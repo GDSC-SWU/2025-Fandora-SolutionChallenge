@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_graph"
+    app:startDestination="@id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.fandora.ui.home.HomeFragment"
+        android:label="@string/label_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/navigation_donation"
+        android:name="com.example.fandora.ui.donation.DonationFragment"
+        android:label="@string/label_donation"
+        tools:layout="@layout/fragment_donation" />
+    <fragment
+        android:id="@+id/navigation_mypage"
+        android:name="com.example.fandora.ui.mypage.MyPageFragment"
+        android:label="@string/label_mypage"
+        tools:layout="@layout/fragment_mypage" />
+
+</navigation>
