@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Fandora</string>
+    <string name="label_home">Home</string>
+    <string name="label_donation">Donation</string>
+    <string name="label_mypage">mypage</string>
+    <string name="description_splash">스플래쉬 화면</string>
 </resources>
