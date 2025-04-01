@@ -1,33 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="BottomNavigationTextStyle" parent="Widget.MaterialComponents.BottomNavigationView">
+    <style name="Navigation.BottomNavigationTextStyle" parent="Navigation">
         <item name="itemTextColor">@color/selector_navigation_color</item>
-        <item name="android:textSize">12sp</item>
     </style>
 
     <style name="H1">
         <item name="android:fontFamily">@font/urbanist_bold</item>
         <item name="android:textSize">24sp</item>
+        <item name="android:fontWeight">700</item>
+        <item name="android:lineSpacingExtra">8dp</item>
+        <item name="android:letterSpacing">-0.02</item>
+    </style>
+
+    <style name="H1.Gray750" parent="H1">
+        <item name="android:textColor">@color/gray_750</item>
+    </style>
+
+    <style name="H1.Pink400.S40" parent="H1">
+        <item name="android:textSize">40sp</item>
+        <item name="android:textColor">@color/pink_400</item>
     </style>
 
     <style name="Body1">
         <item name="android:fontFamily">@font/urbanist_semibold</item>
         <item name="android:textSize">20sp</item>
+        <item name="android:fontWeight">600</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:lineSpacingExtra">8dp</item>
+    </style>
+
+    <style name="Body1.Gray750" parent="Body1">
+        <item name="android:textColor">@color/gray_750</item>
     </style>
 
     <style name="Body2">
         <item name="android:fontFamily">@font/urbanist_semibold</item>
         <item name="android:textSize">16sp</item>
+        <item name="android:fontWeight">600</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:lineSpacingExtra">4dp</item>
     </style>
 
     <style name="Body3">
         <item name="android:fontFamily">@font/urbanist_medium</item>
         <item name="android:textSize">14sp</item>
+        <item name="android:fontWeight">600</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:lineSpacingExtra">3dp</item>
+    </style>
+
+    <style name="Body3.Gray750" parent="Body3">
+        <item name="android:textColor">@color/gray_750</item>
     </style>
 
     <style name="Caption">
         <item name="android:fontFamily">@font/urbanist_medium</item>
         <item name="android:textSize">9sp</item>
+        <item name="android:fontWeight">500</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:lineSpacingExtra">3.6dp</item>
     </style>
 
+    <style name="Navigation">
+        <item name="android:fontFamily">@font/pretendard_regular</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontWeight">400</item>
+        <item name="android:letterSpacing">-0.03</item>
+        <item name="android:lineSpacingExtra">4.8dp</item>
+    </style>
+
+    <style name="AppRoundedImage">
+        <item name="cornerSize">6dp</item>
+    </style>
 </resources>

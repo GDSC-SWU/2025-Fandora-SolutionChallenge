@@ -4,4 +4,9 @@
     <string name="label_donation">Donation</string>
     <string name="label_mypage">mypage</string>
     <string name="description_splash">스플래쉬 화면</string>
+    <string name="description_login_image">로그인 이미지</string>
+    <string name="description_home_logo_image">홈 로고 이미지</string>
+    <string name="description_home_character">홈 캐릭터 이미지</string>
+    <string name="description_home_banner_image">홈 배너 이미지</string>
+    <string name="description_login_google">구글 로그인 버튼</string>
 </resources>
