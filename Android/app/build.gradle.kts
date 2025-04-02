@@ -55,4 +55,11 @@ dependencies {
     // navigation
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+
+    // google map
+    implementation("com.google.android.gms:play-services-maps:19.1.0")
+    implementation ("com.google.android.gms:play-services-location:21.3.0")
+
+    // cardview
+    implementation("androidx.cardview:cardview:1.0.0")
 }

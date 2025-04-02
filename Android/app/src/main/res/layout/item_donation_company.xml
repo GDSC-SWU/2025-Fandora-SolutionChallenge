@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="12dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_donation_company"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:adjustViewBounds="true"
+        android:elevation="2dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image_donation_company"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/AppRoundedImage8" />
+
+    <TextView
+        android:id="@+id/tv_donation_company_name"
+        style="@style/Body2.Gray750"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="MusicSmile Foundation"
+        app:layout_constraintEnd_toEndOf="@id/iv_donation_company"
+        app:layout_constraintStart_toStartOf="@id/iv_donation_company"
+        app:layout_constraintTop_toBottomOf="@id/iv_donation_company" />
+
+    <TextView
+        android:id="@+id/tv_donation_company_content"
+        style="@style/Body3.Gray750.S9"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="A non-profit organization established to support underprivileged youth who ha ㆍㆍㆍ"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/tv_donation_company_name"
+        app:layout_constraintStart_toStartOf="@id/tv_donation_company_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_donation_company_name" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

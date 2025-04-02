@@ -9,4 +9,5 @@
     <string name="description_home_character">홈 캐릭터 이미지</string>
     <string name="description_home_banner_image">홈 배너 이미지</string>
     <string name="description_login_google">구글 로그인 버튼</string>
+    <string name="description_donation_btn_search">기부 기업 검색</string>
 </resources>

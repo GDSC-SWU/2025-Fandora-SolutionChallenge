@@ -1,104 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <ImageView
-        android:id="@+id/iv_home_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:contentDescription="@string/description_home_logo_image"
-        android:src="@drawable/logo_fandora_pink"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_home_fan_joined"
-        style="@style/H1.Gray750"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="This month we joined hands with\n404 fans!"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_home_logo" />
+        <ImageView
+            android:id="@+id/iv_home_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:contentDescription="@string/description_home_logo_image"
+            android:src="@drawable/logo_fandora_pink"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/iv_home_character"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
-        android:contentDescription="@string/description_home_character"
-        android:src="@drawable/ic_character"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_home_fan_joined" />
+        <TextView
+            android:id="@+id/tv_home_fan_joined"
+            style="@style/H1.Gray750"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="This month we joined hands with\n404 fans!"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_home_logo" />
 
-    <TextView
-        android:id="@+id/tv_home_fan_count"
-        style="@style/H1.Pink400.S40"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="86dp"
-        android:text="404"
-        app:layout_constraintEnd_toEndOf="@id/iv_home_character"
-        app:layout_constraintStart_toStartOf="@id/iv_home_character"
-        app:layout_constraintTop_toTopOf="@id/iv_home_character" />
+        <ImageView
+            android:id="@+id/iv_home_character"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:contentDescription="@string/description_home_character"
+            android:src="@drawable/ic_character"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_home_fan_joined" />
 
-    <TextView
-        android:id="@+id/tv_home_top_donating_fandom"
-        style="@style/Body1.Gray750"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="28dp"
-        android:text="Top Donating Fandom of the Month"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_home_character" />
+        <TextView
+            android:id="@+id/tv_home_fan_count"
+            style="@style/H1.Pink400.S40"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="86dp"
+            android:text="404"
+            app:layout_constraintEnd_toEndOf="@id/iv_home_character"
+            app:layout_constraintStart_toStartOf="@id/iv_home_character"
+            app:layout_constraintTop_toTopOf="@id/iv_home_character" />
 
-    <ImageView
-        android:id="@+id/iv_home_banner"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="11dp"
-        android:contentDescription="@string/description_home_banner_image"
-        android:src="@drawable/banner_image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_home_top_donating_fandom" />
+        <TextView
+            android:id="@+id/tv_home_top_donating_fandom"
+            style="@style/Body1.Gray750"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="28dp"
+            android:text="Top Donating Fandom of the Month"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_home_character" />
 
-    <TextView
-        android:id="@+id/tv_home_fan_gift_delivered"
-        style="@style/Body1.Gray750"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="35dp"
-        android:text="Fans' gifts, delivered! 💝"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_home_banner" />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_home_banner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="11dp"
+            android:contentDescription="@string/description_home_banner_image"
+            android:src="@drawable/image_banner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_home_top_donating_fandom"
+            app:shapeAppearanceOverlay="@style/AppRoundedImage20" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_home_fan_gift_delivered"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
-        android:orientation="horizontal"
-        android:paddingHorizontal="13dp"
-        android:paddingBottom="52dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_home_fan_gift_delivered"
-        tools:listitem="@layout/item_home_fan_gift" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_home_fan_gift_delivered"
+            style="@style/Body1.Gray750"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="35dp"
+            android:text="Fans' gifts, delivered! 💝"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_home_banner" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_home_fan_gift_delivered"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:orientation="horizontal"
+            android:paddingHorizontal="13dp"
+            android:paddingBottom="52dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_home_fan_gift_delivered"
+            tools:listitem="@layout/item_home_fan_gift" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
