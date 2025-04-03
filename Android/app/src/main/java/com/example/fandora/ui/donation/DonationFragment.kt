@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.fandora.R
 import com.example.fandora.databinding.FragmentDonationBinding
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -44,6 +45,9 @@ class DonationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setGoogleMap(savedInstanceState)
+        binding.btnDonationSearch.setOnClickListener {
+            findNavController().navigate(R.id.action_donation_to_donation_detail)
+        }
     }
 
     private fun setGoogleMap(savedInstanceState: Bundle?) {

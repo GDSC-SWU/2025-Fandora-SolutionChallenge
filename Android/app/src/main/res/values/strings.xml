@@ -14,4 +14,7 @@
     <string name="description_donation_detail_location">기업 상세 위치 아이콘</string>
     <string name="description_donation_detail_direct">기업 상세 직접 기부</string>
     <string name="description_donation_detail_mail">기업 상세 메일 기부</string>
+    <string name="description_donation_apply_btn_back">기부 신청 뒤로가기 버튼</string>
+    <string name="description_donation_apply_camera">기부 신청 카메라 이미지</string>
+    <string name="description_donation_apply_btn_date">기부 신청 달력 버튼</string>
 </resources>

@@ -49,6 +49,10 @@
         <item name="android:textColor">@color/gray_750</item>
     </style>
 
+    <style name="Body2.Pink400" parent="Body2">
+        <item name="android:textColor">@color/pink_400</item>
+    </style>
+
     <style name="Body3">
         <item name="android:fontFamily">@font/urbanist_medium</item>
         <item name="android:textSize">14sp</item>
@@ -102,4 +106,18 @@
     <style name="AppRoundedImage20">
         <item name="cornerSize">20dp</item>
     </style>
+
+    <style name="DatePicker" parent="ThemeOverlay.Material3.MaterialCalendar">
+        <item name="materialCalendarHeaderLayout">@style/App.Material3.MaterialCalendar.HeaderLayout</item>
+        <item name="android:background">@color/pink_50</item>
+        <item name="colorOnSurface">@color/pink_400</item>
+        <item name="colorPrimary">@color/pink_500</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnSurfaceVariant">@color/pink_400</item>
+    </style>
+
+    <style name="App.Material3.MaterialCalendar.HeaderLayout" parent="@style/Widget.Material3.MaterialCalendar.HeaderLayout">
+        <item name="android:visibility">gone</item>
+    </style>
+
 </resources>
