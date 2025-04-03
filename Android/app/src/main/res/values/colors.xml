@@ -7,12 +7,12 @@
     <color name="pink_800">#801126</color>
     <color name="pink_700">#AB1F38</color>
     <color name="pink_600">#D62C4B</color>
-    <color name="pink_500">#FF385C</color>
-    <color name="pink_400">#FF5977</color>
-    <color name="pink_300">#FF7790</color>
+    <color name="pink_500">#FD4F43</color>
+    <color name="pink_400">#F85F5C</color>
+    <color name="pink_300">#EC7C7D</color>
     <color name="pink_200">#FF96A9</color>
     <color name="pink_100">#FFB5C3</color>
-    <color name="pink_50">#FFD4DC</color>
+    <color name="pink_50">#FFEDF0</color>
     <color name="pink_25">#FFF0F3</color>
 
     <color name="gray_900">#222222</color>
@@ -23,7 +23,7 @@
     <color name="gray_500">#787878</color>
     <color name="gray_400">#8E8E8E</color>
     <color name="gray_300">#A4A4A4</color>
-    <color name="gray_200">#B9B9B9</color>
+    <color name="gray_200">#D9D9D9</color>
     <color name="gray_100">#CFCFCF</color>
     <color name="gray_50">#E4E4E4</color>
     <color name="gray_25">#F9F9F9</color>

@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/btn_donation_apply_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="57dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/description_donation_apply_btn_back"
+                android:src="@drawable/ic_arrow_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_donation_apply_photo"
+                style="@style/Body1.Gray750"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="Recognize by photo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_donation_apply_back" />
+
+            <Button
+                android:id="@+id/btn_donation_apply_camera"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/background_pink50_20_stroke"
+                app:backgroundTint="@null"
+                app:layout_constraintDimensionRatio="372:92"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_donation_apply_photo" />
+
+            <ImageView
+                android:id="@+id/iv_donation_apply_camera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/description_donation_apply_camera"
+                android:src="@drawable/ic_camera"
+                app:layout_constraintBottom_toBottomOf="@id/btn_donation_apply_camera"
+                app:layout_constraintEnd_toEndOf="@id/btn_donation_apply_camera"
+                app:layout_constraintStart_toStartOf="@id/btn_donation_apply_camera"
+                app:layout_constraintTop_toTopOf="@id/btn_donation_apply_camera" />
+
+            <TextView
+                android:id="@+id/tv_donation_apply_artist_name"
+                style="@style/Body2.Gray750"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="22dp"
+                android:text="Artist's name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_donation_apply_camera" />
+
+            <EditText
+                android:id="@+id/et_donation_apply_artist_name"
+                style="@style/Body2.Pink400"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="16dp"
+                android:autofillHints="text"
+                android:background="@drawable/background_white_10_stroke"
+                android:hint="Text"
+                android:inputType="text"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="18dp"
+                android:textColorHint="@color/pink_300"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_donation_apply_artist_name" />
+
+            <TextView
+                android:id="@+id/tv_donation_apply_album_name"
+                style="@style/Body2.Gray750"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="22dp"
+                android:text="Album name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_donation_apply_artist_name" />
+
+            <EditText
+                android:id="@+id/et_donation_apply_album_name"
+                style="@style/Body2.Pink400"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="16dp"
+                android:autofillHints="text"
+                android:background="@drawable/background_white_10_stroke"
+                android:hint="Text"
+                android:inputType="text"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="18dp"
+                android:textColorHint="@color/pink_300"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_donation_apply_album_name" />
+
+            <TextView
+                android:id="@+id/tv_donation_apply_album_count"
+                style="@style/Body2.Gray750"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="22dp"
+                android:text="Number of albums"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_donation_apply_album_name" />
+
+            <EditText
+                android:id="@+id/et_donation_apply_album_count"
+                style="@style/Body2.Pink400"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="16dp"
+                android:autofillHints="text"
+                android:background="@drawable/background_white_10_stroke"
+                android:hint="Text"
+                android:inputType="text"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="18dp"
+                android:textColorHint="@color/pink_300"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_donation_apply_album_count" />
+
+            <TextView
+                android:id="@+id/tv_donation_apply_date"
+                style="@style/Body2.Gray750"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="22dp"
+                android:text="Donation date"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_donation_apply_album_count" />
+
+            <EditText
+                android:id="@+id/et_donation_apply_date"
+                style="@style/Body2.Pink400"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="80dp"
+                android:autofillHints="date"
+                android:background="@drawable/background_white_10_stroke"
+                android:focusable="false"
+                android:inputType="none"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="18dp"
+                android:text="03/13/2025"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_donation_apply_date" />
+
+            <ImageButton
+                android:id="@+id/btn_donation_apply_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/description_donation_apply_btn_date"
+                android:src="@drawable/ic_date"
+                app:layout_constraintBottom_toBottomOf="@id/et_donation_apply_date"
+                app:layout_constraintEnd_toEndOf="@id/et_donation_apply_date"
+                app:layout_constraintTop_toTopOf="@id/et_donation_apply_date" />
+
+            <TextView
+                android:id="@+id/tv_donation_apply_delivery_method"
+                style="@style/Body2.Gray750"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="22dp"
+                android:text="Delivery Method"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_donation_apply_date" />
+
+            <RadioGroup
+                android:id="@+id/radio_group_donation_apply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:paddingBottom="144dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_donation_apply_delivery_method">
+
+                <RadioButton
+                    android:id="@+id/btn_donation_apply_delivery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/selector_delivery"
+                    android:button="@null" />
+
+                <RadioButton
+                    android:id="@+id/btn_donation_apply_in_person"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/selector_in_person"
+                    android:button="@null" />
+            </RadioGroup>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/btn_donation_apply_complete"
+        style="@style/Body1.White"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/background_gray200_10"
+        android:text="Complete Application"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
