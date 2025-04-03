@@ -14,11 +14,20 @@
         android:id="@+id/navigation_donation"
         android:name="com.example.fandora.ui.donation.DonationFragment"
         android:label="@string/label_donation"
-        tools:layout="@layout/fragment_donation" />
+        tools:layout="@layout/fragment_donation" >
+        <action
+            android:id="@+id/action_donation_to_donation_detail"
+            app:destination="@id/navigation_donation_detail" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_mypage"
         android:name="com.example.fandora.ui.mypage.MyPageFragment"
         android:label="@string/label_mypage"
         tools:layout="@layout/fragment_mypage" />
+    <fragment
+        android:id="@+id/navigation_donation_detail"
+        android:name="com.example.fandora.ui.donation.DonationDetailFragment"
+        android:label="DonationDetailFragment"
+        tools:layout="@layout/fragment_donation_detail"/>
 
 </navigation>

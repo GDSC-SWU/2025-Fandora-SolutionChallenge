@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/btn_donation_detail_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="57dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/description_btn_donation_detail_back"
+                android:src="@drawable/ic_arrow_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_donation_detail_company_name"
+                style="@style/H1.Gray750"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="12dp"
+                android:text="MusicSmile Foundation"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_donation_detail_back" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_donation_detail_company"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="15dp"
+                android:scaleType="centerCrop"
+                android:src="@color/gray_50"
+                app:layout_constraintDimensionRatio="372:254"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_donation_detail_company_name"
+                app:shapeAppearanceOverlay="@style/AppRoundedImage15" />
+
+            <ImageView
+                android:id="@+id/iv_donation_detail_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="15dp"
+                android:contentDescription="@string/description_donation_detail_location"
+                android:src="@drawable/ic_loaction"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_donation_detail_company" />
+
+            <TextView
+                android:id="@+id/tv_donation_detail_company_location"
+                style="@style/Body2.Gray750"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="20dp"
+                android:text="110-2, Gongneung-dong, Nowon-gu, Seoul"
+                app:layout_constraintBottom_toBottomOf="@id/iv_donation_detail_location"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_donation_detail_location"
+                app:layout_constraintTop_toTopOf="@id/iv_donation_detail_location" />
+
+            <TextView
+                android:id="@+id/tv_donation_detail_company_content"
+                style="@style/Body3.Gray750"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="12dp"
+                android:text="A non-profit organization established to support underprivileged youth who have limited access to cultural and artistic experiences. It operates a music listening room using donated idol albums and goods and promotes cultural exchange among global youth through K-POP."
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_donation_detail_location" />
+
+            <ImageView
+                android:id="@+id/iv_donation_detail_direct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="11dp"
+                android:contentDescription="@string/description_donation_detail_direct"
+                android:src="@drawable/ic_direct_donation"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_donation_detail_company_content" />
+
+            <ImageView
+                android:id="@+id/iv_donation_detail_mail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:contentDescription="@string/description_donation_detail_mail"
+                android:src="@drawable/ic_mail_in_donation"
+                app:layout_constraintStart_toEndOf="@id/iv_donation_detail_direct"
+                app:layout_constraintTop_toTopOf="@id/iv_donation_detail_direct" />
+
+            <TextView
+                android:id="@+id/tv_donation_detail_review"
+                style="@style/H1.Gray750"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="Donation Review"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_donation_detail_direct" />
+
+            <ImageButton
+                android:id="@+id/btn_donation_detail_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_arrow_right"
+                app:layout_constraintBottom_toBottomOf="@id/tv_donation_detail_review"
+                app:layout_constraintStart_toEndOf="@id/tv_donation_detail_review"
+                app:layout_constraintTop_toTopOf="@id/tv_donation_detail_review" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_donation_detail_review"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="14dp"
+                android:paddingBottom="62dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_donation_detail_review"
+                tools:listitem="@layout/item_donation_detail_review" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/btn_donation_detail_apply"
+        style="@style/Body1.White"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/background_pink400_10"
+        android:text="Apply for Donation"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,4 +10,8 @@
     <string name="description_home_banner_image">홈 배너 이미지</string>
     <string name="description_login_google">구글 로그인 버튼</string>
     <string name="description_donation_btn_search">기부 기업 검색</string>
+    <string name="description_btn_donation_detail_back">기업 상세 뒤로가기 버튼</string>
+    <string name="description_donation_detail_location">기업 상세 위치 아이콘</string>
+    <string name="description_donation_detail_direct">기업 상세 직접 기부</string>
+    <string name="description_donation_detail_mail">기업 상세 메일 기부</string>
 </resources>
