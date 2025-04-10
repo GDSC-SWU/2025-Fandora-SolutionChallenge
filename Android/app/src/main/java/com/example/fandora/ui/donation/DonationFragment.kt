@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.fandora.R
+import com.example.fandora.data.model.Company
 import com.example.fandora.databinding.FragmentDonationBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -32,6 +33,21 @@ class DonationFragment : Fragment() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val LOCATION_PERMISSION_REQUEST_CODE = 100
 
+    private val donationCompanyAdapter = DonationCompanyAdapter(object : CompanyClickListener {
+        override fun onCompanyClick(companyId: Int) {
+            findNavController().navigate(R.id.action_donation_to_donation_detail)
+        }
+    })
+
+    val dummyCompany = listOf(
+        Company(1, "MusicSmile Foundation", "", "", "A non-profit organization established to support underprivileged youth who ha ㆍㆍㆍ ", "2024.12.28"),
+        Company(2, "Idol Dream Center", "", "", "A welfare facility for children and adolescents with developmental disabilities who lovㆍㆍㆍ ", "2024.10.1"),
+        Company(3, "MusicBridge", "", "", "A social enterprise that supports underprivileged communities through ㆍㆍㆍ", "2024.7.20"),
+        Company(4, "SoulHarmony", "", "", "A nonprofit organization that provides psychological and emotional support fo ㆍㆍㆍ", "2024.10.2"),
+        Company(5, "Green Eco Store", "", "", "Green Eco Store is a social enterprise recycling store that promotes eco-friendly culture. They collect K-POP albums, merchandise, and books, then resell them or donate them to local children's centers and underprivileged youth. All proceeds support environmental protection activities.", "2024.5.5"),
+        Company(6, "Grow Care Center", "", "", "Grow Care Center is a social welfare facility dedicated to supporting children and youth in need. They provide various programs to help children and adolescents grow up healthy and independent. Donated K-POP albums are gifted to the children or made available in community spaces.", "2025.4.10"),
+    )
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -44,10 +60,17 @@ class DonationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setLayout(savedInstanceState)
+    }
+
+    private fun setLayout(savedInstanceState: Bundle?) {
         setGoogleMap(savedInstanceState)
-        binding.btnDonationSearch.setOnClickListener {
-            findNavController().navigate(R.id.action_donation_to_donation_detail)
-        }
+        setAdapter()
+    }
+
+    private fun setAdapter() {
+        binding.rvDonationCompany.adapter = donationCompanyAdapter
+        donationCompanyAdapter.submitList(dummyCompany)
     }
 
     private fun setGoogleMap(savedInstanceState: Bundle?) {
