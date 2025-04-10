@@ -1,6 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
+    <ImageButton
+        android:id="@+id/btn_mypage_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="20dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/description_mypage_btn_setting"
+        android:src="@drawable/ic_setting"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_mypage_nickname"
+        style="@style/Body1.Black.S24"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="95dp"
+        android:gravity="center"
+        android:text="Dear valued member, OO!"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_mypage_donate_total"
+        style="@style/Body3.Black.S20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="22dp"
+        android:text="You have donated a total of 10 times!"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_mypage_nickname" />
+
+    <ImageButton
+        android:id="@+id/btn_mypage_donate_total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/description_mypage_btn_total_donate"
+        android:src="@drawable/ic_arrow_right_pink"
+        app:layout_constraintBottom_toBottomOf="@id/tv_mypage_donate_total"
+        app:layout_constraintStart_toEndOf="@id/tv_mypage_donate_total"
+        app:layout_constraintTop_toTopOf="@id/tv_mypage_donate_total" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_mypage_donate_total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_mypage_donate_total"
+        tools:listitem="@layout/item_donation_total" />
+
+    <TextView
+        android:id="@+id/tv_mypage_ongoing_donation"
+        style="@style/Body3.Black.S20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="27dp"
+        android:text="Ongoing Donation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rv_mypage_donate_total" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_mypage_ongoing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal"
+        android:paddingBottom="124dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_mypage_ongoing_donation"
+        tools:listitem="@layout/item_ongoing" />
 </androidx.constraintlayout.widget.ConstraintLayout>

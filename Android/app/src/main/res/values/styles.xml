@@ -29,6 +29,11 @@
         <item name="android:lineSpacingExtra">8dp</item>
     </style>
 
+    <style name="Body1.Black.S24" parent="Body1">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
     <style name="Body1.Gray750" parent="Body1">
         <item name="android:textColor">@color/gray_750</item>
     </style>
@@ -65,6 +70,11 @@
         <item name="android:textColor">@color/gray_750</item>
     </style>
 
+    <style name="Body3.Black.S20" parent="Body3">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <style name="Body3.Gray750.S9" parent="Body3">
         <item name="android:textColor">@color/gray_750</item>
         <item name="android:textSize">9sp</item>
@@ -77,6 +87,10 @@
         <item name="android:fontWeight">500</item>
         <item name="android:letterSpacing">-0.02</item>
         <item name="android:lineSpacingExtra">3.6dp</item>
+    </style>
+
+    <style name="Caption.Gray750" parent="Caption">
+        <item name="android:textColor">@color/gray_750</item>
     </style>
 
     <style name="Navigation">

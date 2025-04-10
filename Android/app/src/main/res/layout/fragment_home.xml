@@ -96,14 +96,12 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_home_fan_gift_delivered"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="11dp"
             android:orientation="horizontal"
-            android:paddingHorizontal="13dp"
             android:paddingBottom="52dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_home_fan_gift_delivered"
             tools:listitem="@layout/item_home_fan_gift" />

@@ -1,6 +1,8 @@
 package com.example.fandora.ui.donation
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,7 +40,15 @@ class DonationApplyFragment : Fragment() {
         binding.btnDonationApplyBack.setOnClickListener {
             findNavController().navigateUp()
         }
+        setTodayDate()
+        setBtnColorChange()
     }
+
+    private fun setTodayDate() {
+        val currentDate = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault()).format(Date())
+        binding.tvDonationApplyDate.text = currentDate
+    }
+
 
     private fun setDatePicker() {
         val openDatePicker = {
@@ -61,6 +71,42 @@ class DonationApplyFragment : Fragment() {
             val sdf = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
             val selectedDate = sdf.format(Date(selection))
             binding.etDonationApplyDate.setText(selectedDate)
+        }
+    }
+
+    private fun checkFormAndUpdateButton() {
+        val isArtistNameNotEmpty = binding.etDonationApplyArtistName.text.toString().trim().isNotEmpty()
+        val isAlbumNotEmpty = binding.etDonationApplyAlbumName.text.toString().trim().isNotEmpty()
+        val isAlbumCountNotEmpty = binding.etDonationApplyAlbumCount.text.toString().trim().isNotEmpty()
+        val isRadioBtnNotEmpty = binding.radioGroupDonationApply.checkedRadioButtonId != -1
+
+        with(binding.btnDonationApplyComplete) {
+            isEnabled = isArtistNameNotEmpty && isAlbumNotEmpty && isAlbumCountNotEmpty && isRadioBtnNotEmpty
+            setBackgroundResource(
+                if (isEnabled) R.drawable.background_pink400_10
+                else R.drawable.background_gray200_10
+            )
+        }
+    }
+
+
+    private fun setBtnColorChange() {
+        val watcher = object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) = checkFormAndUpdateButton()
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
+        }
+        binding.etDonationApplyArtistName.addTextChangedListener(watcher)
+        binding.etDonationApplyAlbumName.addTextChangedListener(watcher)
+        binding.etDonationApplyAlbumCount.addTextChangedListener(watcher)
+        binding.radioGroupDonationApply.setOnCheckedChangeListener { _, _ ->
+            checkFormAndUpdateButton()
+        }
+
+        binding.btnDonationApplyComplete.setOnClickListener {
+            if (it.isEnabled) {
+
+            }
         }
     }
 

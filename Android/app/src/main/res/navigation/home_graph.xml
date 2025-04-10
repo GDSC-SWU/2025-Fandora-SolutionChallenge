@@ -23,7 +23,11 @@
         android:id="@+id/navigation_mypage"
         android:name="com.example.fandora.ui.mypage.MyPageFragment"
         android:label="@string/label_mypage"
-        tools:layout="@layout/fragment_mypage" />
+        tools:layout="@layout/fragment_mypage" >
+        <action
+            android:id="@+id/action_mypage_to_donation_detail"
+            app:destination="@id/navigation_donation_detail" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_donation_detail"
         android:name="com.example.fandora.ui.donation.DonationDetailFragment"
