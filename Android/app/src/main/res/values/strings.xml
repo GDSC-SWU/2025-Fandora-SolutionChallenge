@@ -19,4 +19,8 @@
     <string name="description_donation_apply_btn_date">기부 신청 달력 버튼</string>
     <string name="description_mypage_btn_setting">마이페이지 설정 버튼</string>
     <string name="description_mypage_btn_total_donate">마이페이지 기부 내역 버튼</string>
+    <string name="description_camera_btn_back">카메라 뒤로가기 버튼</string>
+    <string name="description_camera_frame">카메라 프레임</string>
+    <string name="description_camera_btn_album">카메라 앨범 버튼</string>
+    <string name="description_camera_btn_capture">카메라 촬영 버튼</string>
 </resources>

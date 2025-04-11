@@ -57,9 +57,17 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
 
     // google map
-    implementation("com.google.android.gms:play-services-maps:19.1.0")
-    implementation ("com.google.android.gms:play-services-location:21.3.0")
+    implementation(libs.play.services.maps)
+    implementation (libs.play.services.location)
 
     // cardview
-    implementation("androidx.cardview:cardview:1.0.0")
+    implementation(libs.androidx.cardview)
+
+    // CameraX
+    implementation ("androidx.camera:camera-core:1.4.2")
+    implementation ("androidx.camera:camera-camera2:1.4.2")
+    implementation ("androidx.camera:camera-lifecycle:1.4.2")
+    implementation ("androidx.camera:camera-view:1.4.2")
+    implementation("androidx.camera:camera-mlkit-vision:1.4.2")
+    implementation ("androidx.camera:camera-extensions:1.4.2")
 }

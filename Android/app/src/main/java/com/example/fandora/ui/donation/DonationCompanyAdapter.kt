@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fandora.R
 import com.example.fandora.data.model.Company
 import com.example.fandora.databinding.ItemDonationCompanyBinding
+import com.example.fandora.ui.common.CompanyClickListener
 
 class DonationCompanyAdapter(private val clickListener: CompanyClickListener) : ListAdapter<Company, DonationCompanyAdapter.DonationCompanyViewHolder>(
     DonationCompanyCallback()

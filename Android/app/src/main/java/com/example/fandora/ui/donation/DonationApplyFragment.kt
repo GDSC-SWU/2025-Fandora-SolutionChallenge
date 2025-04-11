@@ -40,6 +40,9 @@ class DonationApplyFragment : Fragment() {
         binding.btnDonationApplyBack.setOnClickListener {
             findNavController().navigateUp()
         }
+        binding.btnDonationApplyCamera.setOnClickListener {
+            findNavController().navigate(R.id.action_donation_apply_to_camera)
+        }
         setTodayDate()
         setBtnColorChange()
     }

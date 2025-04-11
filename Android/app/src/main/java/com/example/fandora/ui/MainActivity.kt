@@ -1,6 +1,7 @@
 package com.example.fandora.ui
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -31,6 +32,16 @@ class MainActivity : AppCompatActivity() {
         with(binding.bottomNavigation) {
             itemIconTintList = null
             setupWithNavController(navController)
+            navController.addOnDestinationChangedListener { _, destination, _ ->
+                visibility = when (destination.id) {
+                    R.id.navigation_camera -> {
+                        View.GONE
+                    }
+                    else -> {
+                        View.VISIBLE
+                    }
+                }
+            }
         }
     }
 
@@ -38,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
+            v.setPadding(systemBars.left, 0, systemBars.right, 0)
             insets
         }
     }

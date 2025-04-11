@@ -1,11 +1,15 @@
 package com.example.fandora.ui.donation
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -13,6 +17,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.fandora.R
 import com.example.fandora.data.model.Company
 import com.example.fandora.databinding.FragmentDonationBinding
+import com.example.fandora.ui.common.CompanyClickListener
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -29,15 +34,23 @@ class DonationFragment : Fragment() {
 
     private lateinit var mapView: MapView
     private var googleMap: GoogleMap? = null
-
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private val LOCATION_PERMISSION_REQUEST_CODE = 100
 
     private val donationCompanyAdapter = DonationCompanyAdapter(object : CompanyClickListener {
         override fun onCompanyClick(companyId: Int) {
             findNavController().navigate(R.id.action_donation_to_donation_detail)
         }
     })
+
+    private val locationPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            getCurrentLocation()
+        } else {
+            Toast.makeText(requireContext(), "위치 권한이 필요합니다.", Toast.LENGTH_SHORT).show()
+        }
+    }
 
     val dummyCompany = listOf(
         Company(1, "MusicSmile Foundation", "", "", "A non-profit organization established to support underprivileged youth who ha ㆍㆍㆍ ", "2024.12.28"),
@@ -73,47 +86,38 @@ class DonationFragment : Fragment() {
         donationCompanyAdapter.submitList(dummyCompany)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun setGoogleMap(savedInstanceState: Bundle?) {
         mapView = binding.mapDonationCenter
         mapView.onCreate(savedInstanceState)
 
         mapView.getMapAsync { map ->
             googleMap = map
-            googleMap?.apply {
-                mapType = GoogleMap.MAP_TYPE_NORMAL
-            }
+            googleMap?.mapType = GoogleMap.MAP_TYPE_NORMAL
             requestLocationPermission()
         }
+
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
+
+        binding.touchBlocker.setOnTouchListener { v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> v.parent.requestDisallowInterceptTouchEvent(true)
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> v.parent.requestDisallowInterceptTouchEvent(false)
+            }
+            false
+        }
     }
 
     private fun requestLocationPermission() {
-        if (ContextCompat.checkSelfPermission(
+        when {
+            ContextCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                requireActivity(),
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                LOCATION_PERMISSION_REQUEST_CODE
-            )
-        } else {
-            getCurrentLocation()
-        }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            ) == PackageManager.PERMISSION_GRANTED -> {
                 getCurrentLocation()
-            } else {
-                // 권한 거부 시 처리 (예: 사용자에게 메시지 표시)
+            }
+            else -> {
+                locationPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
             }
         }
     }
@@ -122,20 +126,20 @@ class DonationFragment : Fragment() {
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED
-        ) {
-            fusedLocationClient.lastLocation.addOnSuccessListener { location ->
-                location?.let {
-                    val currentLatLng = LatLng(it.latitude, it.longitude)
-                    googleMap?.apply {
-                        moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15f))
-                        addMarker(
-                            MarkerOptions()
-                                .position(currentLatLng)
-                                .title("현재 위치")
-                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_marker))
-                        )
-                    }
+            ) != PackageManager.PERMISSION_GRANTED
+        ) return
+
+        fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+            location?.let {
+                val currentLatLng = LatLng(it.latitude, it.longitude)
+                googleMap?.apply {
+                    moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15f))
+                    addMarker(
+                        MarkerOptions()
+                            .position(currentLatLng)
+                            .title("현재 위치")
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_marker))
+                    )
                 }
             }
         }
