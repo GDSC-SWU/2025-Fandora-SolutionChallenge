@@ -86,19 +86,21 @@ class DonationFragment : Fragment() {
         donationCompanyAdapter.submitList(dummyCompany)
     }
 
-    @SuppressLint("ClickableViewAccessibility")
     private fun setGoogleMap(savedInstanceState: Bundle?) {
         mapView = binding.mapDonationCenter
         mapView?.onCreate(savedInstanceState)
-
-        mapView?.getMapAsync { map ->
-            googleMap = map
-            googleMap?.mapType = GoogleMap.MAP_TYPE_NORMAL
-            requestLocationPermission()
-        }
-
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
 
+        setupTouchBlocker()
+        mapView?.getMapAsync { map ->
+            googleMap = map
+            setupMapUi()
+            requestLocationPermission()
+        }
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun setupTouchBlocker() {
         binding.touchBlocker.setOnTouchListener { v, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> v.parent.requestDisallowInterceptTouchEvent(true)
@@ -107,6 +109,14 @@ class DonationFragment : Fragment() {
             false
         }
     }
+
+    private fun setupMapUi() {
+        googleMap?.mapType = GoogleMap.MAP_TYPE_NORMAL
+        googleMap?.setOnMapClickListener {
+            findNavController().navigate(R.id.action_donation_to_map)
+        }
+    }
+
 
     private fun requestLocationPermission() {
         when {

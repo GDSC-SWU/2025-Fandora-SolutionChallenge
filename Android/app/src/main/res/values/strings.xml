@@ -23,4 +23,5 @@
     <string name="description_camera_frame">카메라 프레임</string>
     <string name="description_camera_btn_album">카메라 앨범 버튼</string>
     <string name="description_camera_btn_capture">카메라 촬영 버튼</string>
+    <string name="description_map_btn_back">구글 지도 뒤로가기 버튼</string>
 </resources>
