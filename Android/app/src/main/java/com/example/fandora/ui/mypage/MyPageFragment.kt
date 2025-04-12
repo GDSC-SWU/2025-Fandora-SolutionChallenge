@@ -10,8 +10,7 @@ import com.example.fandora.R
 import com.example.fandora.data.model.Company
 import com.example.fandora.databinding.FragmentMypageBinding
 import com.example.fandora.ui.common.FirstLastMarginDecoration
-import com.example.fandora.ui.donation.CompanyClickListener
-import com.example.fandora.ui.donation.DonationCompanyAdapter
+import com.example.fandora.ui.common.CompanyClickListener
 
 class MyPageFragment : Fragment() {
 

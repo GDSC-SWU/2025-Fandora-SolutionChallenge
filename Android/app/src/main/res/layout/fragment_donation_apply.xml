@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white">
 
     <androidx.core.widget.NestedScrollView
@@ -180,7 +181,7 @@
                 android:inputType="none"
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="18dp"
-                android:text="03/13/2025"
+                tools:text="03/13/2025"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_donation_apply_date" />

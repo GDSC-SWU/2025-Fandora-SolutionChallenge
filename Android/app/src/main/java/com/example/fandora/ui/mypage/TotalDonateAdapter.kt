@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fandora.R
 import com.example.fandora.data.model.Company
 import com.example.fandora.databinding.ItemDonationTotalBinding
-import com.example.fandora.ui.donation.CompanyClickListener
+import com.example.fandora.ui.common.CompanyClickListener
 
 class TotalDonateAdapter(private val clickListener: CompanyClickListener) : ListAdapter<Company, TotalDonateAdapter.TotalDonateViewHolder>(
     TotalDonateCallback()

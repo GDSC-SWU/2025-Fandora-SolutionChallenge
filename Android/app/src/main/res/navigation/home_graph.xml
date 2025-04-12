@@ -41,6 +41,17 @@
         android:id="@+id/navigation_donation_apply"
         android:name="com.example.fandora.ui.donation.DonationApplyFragment"
         android:label="기무 신청"
-        tools:layout="@layout/fragment_donation_apply" />
-
+        tools:layout="@layout/fragment_donation_apply" >
+        <action
+            android:id="@+id/action_donation_apply_to_camera"
+            app:destination="@id/navigation_camera" />
+        <action
+            android:id="@+id/action_donation_apply_to_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_camera"
+        android:name="com.example.fandora.ui.donation.CameraFragment"
+        android:label="CameraFragment"
+        tools:layout="@layout/fragment_camera"/>
 </navigation>

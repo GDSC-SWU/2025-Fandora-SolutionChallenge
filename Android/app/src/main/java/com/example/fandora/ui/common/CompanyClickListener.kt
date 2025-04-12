@@ -1,4 +1,4 @@
-package com.example.fandora.ui.donation
+package com.example.fandora.ui.common
 
 interface CompanyClickListener {
     fun onCompanyClick(companyId: Int)
