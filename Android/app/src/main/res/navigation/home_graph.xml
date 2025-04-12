@@ -45,11 +45,13 @@
         <action
             android:id="@+id/action_donation_apply_to_camera"
             app:destination="@id/navigation_camera" />
+        <action
+            android:id="@+id/action_donation_apply_to_home"
+            app:destination="@id/navigation_home" />
     </fragment>
     <fragment
         android:id="@+id/navigation_camera"
         android:name="com.example.fandora.ui.donation.CameraFragment"
         android:label="CameraFragment"
         tools:layout="@layout/fragment_camera"/>
-
 </navigation>

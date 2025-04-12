@@ -32,7 +32,7 @@ class DonationFragment : Fragment() {
     private var _binding: FragmentDonationBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var mapView: MapView
+    private var mapView: MapView? = null
     private var googleMap: GoogleMap? = null
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
@@ -89,9 +89,9 @@ class DonationFragment : Fragment() {
     @SuppressLint("ClickableViewAccessibility")
     private fun setGoogleMap(savedInstanceState: Bundle?) {
         mapView = binding.mapDonationCenter
-        mapView.onCreate(savedInstanceState)
+        mapView?.onCreate(savedInstanceState)
 
-        mapView.getMapAsync { map ->
+        mapView?.getMapAsync { map ->
             googleMap = map
             googleMap?.mapType = GoogleMap.MAP_TYPE_NORMAL
             requestLocationPermission()
@@ -147,26 +147,28 @@ class DonationFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        mapView.onResume()
+        mapView?.onResume()
     }
 
     override fun onPause() {
         super.onPause()
-        mapView.onPause()
+        mapView?.onPause()
     }
 
     override fun onDestroyView() {
+        mapView?.onDestroy()
         super.onDestroyView()
         _binding = null
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        mapView.onDestroy()
-    }
-
+    @Deprecated("Deprecated in Java")
     override fun onLowMemory() {
         super.onLowMemory()
-        mapView.onLowMemory()
+        mapView?.onLowMemory()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        mapView?.onSaveInstanceState(outState)
     }
 }

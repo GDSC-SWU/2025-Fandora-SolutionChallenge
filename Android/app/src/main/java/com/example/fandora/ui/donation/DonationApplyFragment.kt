@@ -49,7 +49,7 @@ class DonationApplyFragment : Fragment() {
 
     private fun setTodayDate() {
         val currentDate = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault()).format(Date())
-        binding.tvDonationApplyDate.text = currentDate
+        binding.etDonationApplyDate.setText(currentDate)
     }
 
 
@@ -89,6 +89,9 @@ class DonationApplyFragment : Fragment() {
                 if (isEnabled) R.drawable.background_pink400_10
                 else R.drawable.background_gray200_10
             )
+            setOnClickListener {
+                if (isEnabled) findNavController().navigate(R.id.action_donation_apply_to_home)
+            }
         }
     }
 
@@ -104,12 +107,6 @@ class DonationApplyFragment : Fragment() {
         binding.etDonationApplyAlbumCount.addTextChangedListener(watcher)
         binding.radioGroupDonationApply.setOnCheckedChangeListener { _, _ ->
             checkFormAndUpdateButton()
-        }
-
-        binding.btnDonationApplyComplete.setOnClickListener {
-            if (it.isEnabled) {
-
-            }
         }
     }
 
