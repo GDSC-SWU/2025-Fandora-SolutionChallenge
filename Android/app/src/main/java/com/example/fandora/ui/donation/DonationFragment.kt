@@ -37,8 +37,9 @@ class DonationFragment : Fragment() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     private val donationCompanyAdapter = DonationCompanyAdapter(object : CompanyClickListener {
-        override fun onCompanyClick(companyId: Int) {
-            findNavController().navigate(R.id.action_donation_to_donation_detail)
+        override fun onCompanyClick(company: Company) {
+            val action = DonationFragmentDirections.actionDonationToDonationDetail(company)
+            findNavController().navigate(action)
         }
     })
 

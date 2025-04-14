@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:text="Recognize by photo"
+                android:text="@string/label_recognize_by_photo"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/btn_donation_apply_back" />
 
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="22dp"
-                android:text="Artist's name"
+                android:text="@string/label_artist_name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/btn_donation_apply_camera" />
@@ -86,7 +86,7 @@
                 android:layout_marginTop="16dp"
                 android:autofillHints="text"
                 android:background="@drawable/background_white_10_stroke"
-                android:hint="Text"
+                android:hint="@string/hint_text"
                 android:inputType="text"
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="18dp"
@@ -102,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="22dp"
-                android:text="Album name"
+                android:text="@string/label_album_name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/et_donation_apply_artist_name" />
@@ -116,7 +116,7 @@
                 android:layout_marginTop="16dp"
                 android:autofillHints="text"
                 android:background="@drawable/background_white_10_stroke"
-                android:hint="Text"
+                android:hint="@string/hint_text"
                 android:inputType="text"
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="18dp"
@@ -132,7 +132,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="22dp"
-                android:text="Number of albums"
+                android:text="@string/label_album_count"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/et_donation_apply_album_name" />
@@ -146,7 +146,7 @@
                 android:layout_marginTop="16dp"
                 android:autofillHints="text"
                 android:background="@drawable/background_white_10_stroke"
-                android:hint="Text"
+                android:hint="@string/hint_text"
                 android:inputType="text"
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="18dp"
@@ -162,7 +162,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="22dp"
-                android:text="Donation date"
+                android:text="@string/label_donation_date"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/et_donation_apply_album_count" />
@@ -181,10 +181,11 @@
                 android:inputType="none"
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="18dp"
-                tools:text="03/13/2025"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_donation_apply_date" />
+                app:layout_constraintTop_toBottomOf="@id/tv_donation_apply_date"
+                tools:ignore="TextFields"
+                tools:text="03/13/2025" />
 
             <ImageButton
                 android:id="@+id/btn_donation_apply_date"
@@ -205,7 +206,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="22dp"
-                android:text="Delivery Method"
+                android:text="@string/label_delivery_method"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/et_donation_apply_date" />
@@ -247,9 +248,9 @@
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/background_gray200_10"
-        android:text="Complete Application"
+        android:text="@string/label_complete_application"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

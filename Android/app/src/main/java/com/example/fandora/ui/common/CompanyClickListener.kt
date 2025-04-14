@@ -1,5 +1,7 @@
 package com.example.fandora.ui.common
 
+import com.example.fandora.data.model.Company
+
 interface CompanyClickListener {
-    fun onCompanyClick(companyId: Int)
+    fun onCompanyClick(company: Company)
 }

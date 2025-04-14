@@ -26,7 +26,7 @@ class OngoingAdapter(private val clickListener: CompanyClickListener) : ListAdap
         RecyclerView.ViewHolder(binding.root) {
         fun bind(company: Company, clickListener: CompanyClickListener) {
             itemView.setOnClickListener {
-                clickListener.onCompanyClick(company.id)
+                clickListener.onCompanyClick(company)
             }
             binding.ivOngoing.setBackgroundResource(R.color.gray_50)
             binding.tvOngoingCompanyName.text = company.companyName

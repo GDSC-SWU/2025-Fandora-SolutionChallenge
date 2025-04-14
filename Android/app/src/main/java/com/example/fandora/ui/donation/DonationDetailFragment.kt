@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.fandora.R
 import com.example.fandora.data.model.Review
 import com.example.fandora.databinding.FragmentDonationDetailBinding
@@ -15,6 +16,7 @@ class DonationDetailFragment : Fragment() {
 
     private var _binding: FragmentDonationDetailBinding? = null
     private val binding get() = _binding!!
+    private val args: DonationDetailFragmentArgs by navArgs()
 
     private val donationReviewAdapter = DonationReviewAdapter()
 
@@ -43,13 +45,18 @@ class DonationDetailFragment : Fragment() {
     }
 
     private fun setLayout() {
-        binding.btnDonationDetailApply.setOnClickListener {
-            findNavController().navigate(R.id.action_donation_detail_to_donation_apply)
+        val company = args.company
+        with(binding) {
+            tvDonationDetailCompanyName.text = company.companyName
+            tvDonationDetailCompanyLocation.text = company.location
+            tvDonationDetailCompanyContent.text = company.content
+            btnDonationDetailApply.setOnClickListener {
+                findNavController().navigate(R.id.action_donation_detail_to_donation_apply)
+            }
+            btnDonationDetailBack.setOnClickListener {
+                findNavController().navigateUp()
+            }
         }
-        binding.btnDonationDetailBack.setOnClickListener {
-            findNavController().navigateUp()
-        }
-
         setAdapter()
         setMargin()
     }

@@ -18,14 +18,16 @@ class MyPageFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val totalDonateAdapter = TotalDonateAdapter(object : CompanyClickListener {
-        override fun onCompanyClick(companyId: Int) {
-            findNavController().navigate(R.id.action_mypage_to_donation_detail)
+        override fun onCompanyClick(company: Company) {
+            val action = MyPageFragmentDirections.actionMypageToDonationDetail(company)
+            findNavController().navigate(action)
         }
     })
 
     private val onGoingAdapter = OngoingAdapter(object : CompanyClickListener {
-        override fun onCompanyClick(companyId: Int) {
-            findNavController().navigate(R.id.action_mypage_to_donation_detail)
+        override fun onCompanyClick(company: Company) {
+            val action = MyPageFragmentDirections.actionMypageToDonationDetail(company)
+            findNavController().navigate(action)
         }
     })
 

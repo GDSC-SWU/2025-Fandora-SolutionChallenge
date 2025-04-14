@@ -34,11 +34,11 @@ class MainActivity : AppCompatActivity() {
             setupWithNavController(navController)
             navController.addOnDestinationChangedListener { _, destination, _ ->
                 visibility = when (destination.id) {
-                    R.id.navigation_camera -> {
-                        View.GONE
+                    R.id.navigation_home, R.id.navigation_donation, R.id.navigation_mypage -> {
+                        View.VISIBLE
                     }
                     else -> {
-                        View.VISIBLE
+                        View.GONE
                     }
                 }
             }

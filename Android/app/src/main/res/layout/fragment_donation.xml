@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="68dp"
-            android:text="Nearby donation centers"
+            android:text="@string/label_donation_map_nearby_centers"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="18dp"
-            android:text="Companies Awaiting Donations"
+            android:text="@string/label_donation_companies_awaiting"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/frame_layout" />
