@@ -26,7 +26,7 @@ class DonationCompanyAdapter(private val clickListener: CompanyClickListener) : 
         RecyclerView.ViewHolder(binding.root) {
         fun bind(company: Company, clickListener: CompanyClickListener) {
             itemView.setOnClickListener {
-                clickListener.onCompanyClick(company.id)
+                clickListener.onCompanyClick(company)
             }
             binding.ivDonationCompany.setBackgroundResource(R.color.gray_50)
             binding.tvDonationCompanyName.text = company.companyName

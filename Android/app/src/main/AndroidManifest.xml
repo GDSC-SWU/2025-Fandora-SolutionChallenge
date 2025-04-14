@@ -37,7 +37,7 @@
             android:exported="true" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAWVV6xHb3R-Ic_keLGVIld5T9_2EwRVlA" />
+            android:value="${mapsapi.key}" />
     </application>
 
 </manifest>

@@ -1,8 +1,26 @@
 <resources>
     <string name="app_name">Fandora</string>
+
+    <!--    label-->
     <string name="label_home">Home</string>
     <string name="label_donation">Donation</string>
     <string name="label_mypage">mypage</string>
+    <string name="label_donation_map_nearby_centers">Nearby donation centers</string>
+    <string name="label_donation_companies_awaiting">Companies Awaiting Donations</string>
+    <string name="label_recognize_by_photo">Recognize by photo</string>
+    <string name="label_artist_name">Artist\'s name</string>
+    <string name="label_album_name">Album name</string>
+    <string name="label_album_count">Number of albums</string>
+    <string name="label_donation_date">Donation date</string>
+    <string name="label_delivery_method">Delivery Method</string>
+    <string name="label_complete_application">Complete Application</string>
+    <string name="label_donation_review">Donation Review</string>
+    <string name="label_apply_for_donation">Apply for Donation</string>
+    <string name="label_top_donation_fandom">Top Donating Fandom of the Month</string>
+    <string name="label_delivery_review">Fans\' gifts, delivered! 💝</string>
+    <string name="label_ongoing_donation">Ongoing Donation</string>
+
+    <!--    description-->
     <string name="description_splash">스플래쉬 화면</string>
     <string name="description_login_image">로그인 이미지</string>
     <string name="description_home_logo_image">홈 로고 이미지</string>
@@ -23,4 +41,9 @@
     <string name="description_camera_frame">카메라 프레임</string>
     <string name="description_camera_btn_album">카메라 앨범 버튼</string>
     <string name="description_camera_btn_capture">카메라 촬영 버튼</string>
+    <string name="description_map_btn_back">구글 지도 뒤로가기 버튼</string>
+    <string name="description_btn_donation_review">기부 리뷰 상세 버튼</string>
+
+    <!--    hint-->
+    <string name="hint_text">Text</string>
 </resources>

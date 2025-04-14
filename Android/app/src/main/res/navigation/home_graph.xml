@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_donation_to_donation_detail"
             app:destination="@id/navigation_donation_detail" />
+        <action
+            android:id="@+id/action_donation_to_map"
+            app:destination="@id/navigation_map" />
     </fragment>
     <fragment
         android:id="@+id/navigation_mypage"
@@ -36,6 +39,9 @@
         <action
             android:id="@+id/action_donation_detail_to_donation_apply"
             app:destination="@id/navigation_donation_apply" />
+        <argument
+            android:name="company"
+            app:argType="com.example.fandora.data.model.Company" />
     </fragment>
     <fragment
         android:id="@+id/navigation_donation_apply"
@@ -54,4 +60,9 @@
         android:name="com.example.fandora.ui.donation.CameraFragment"
         android:label="CameraFragment"
         tools:layout="@layout/fragment_camera"/>
+    <fragment
+        android:id="@+id/navigation_map"
+        android:name="com.example.fandora.ui.donation.MapFragment"
+        android:label="MapFragment"
+        tools:layout="@layout/fragment_map"/>
 </navigation>
