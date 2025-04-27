@@ -59,7 +59,13 @@
         android:id="@+id/navigation_camera"
         android:name="com.example.fandora.ui.donation.CameraFragment"
         android:label="CameraFragment"
-        tools:layout="@layout/fragment_camera"/>
+        tools:layout="@layout/fragment_camera">
+        <action
+            android:id="@+id/action_camera_to_donation_apply"
+            app:destination="@id/navigation_donation_apply"
+            app:popUpTo="@id/navigation_donation_apply"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_map"
         android:name="com.example.fandora.ui.donation.MapFragment"

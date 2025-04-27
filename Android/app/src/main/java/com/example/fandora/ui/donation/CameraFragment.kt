@@ -1,6 +1,9 @@
 package com.example.fandora.ui.donation
 
+import android.Manifest
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -11,13 +14,21 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
+import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import android.Manifest
+import com.example.fandora.BuildConfig
 import com.example.fandora.databinding.FragmentCameraBinding
+import com.google.ai.client.generativeai.GenerativeModel
+import com.google.ai.client.generativeai.type.content
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.io.File
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -41,7 +52,11 @@ class CameraFragment : Fragment() {
 
     private val galleryLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let {
-            // uploadImageFromUri(it)
+            uriToBitmap(it)?.let { bitmap ->
+                analyzeImageWithGemini(bitmap)
+            } ?: run {
+                Toast.makeText(requireContext(), "이미지 로드 실패", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -67,7 +82,7 @@ class CameraFragment : Fragment() {
             findNavController().navigateUp()
         }
         binding.btnCameraCapture.setOnClickListener {
-            // takePhoto()
+            takePhoto()
         }
         binding.btnCameraAlbum.setOnClickListener {
             openGallery()
@@ -113,74 +128,75 @@ class CameraFragment : Fragment() {
         }, ContextCompat.getMainExecutor(requireContext()))
     }
 
-//    private fun takePhoto() {
-//        val imageCapture = imageCapture ?: return
-//        val photoFile = File.createTempFile("temp_photo", ".jpg", requireContext().cacheDir)
-//
-//        val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
-//
-//        imageCapture.takePicture(
-//            outputOptions,
-//            ContextCompat.getMainExecutor(requireContext()),
-//            object : ImageCapture.OnImageSavedCallback {
-//                override fun onError(exc: ImageCaptureException) {
-//                    Log.e("CameraX", "촬영 실패: ${exc.message}")
-//                }
-//
-//                override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-//                    uploadImage(photoFile)
-//                }
-//            }
-//        )
-//    }
+    private fun takePhoto() {
+        val imageCapture = imageCapture ?: return
+        val photoFile = File.createTempFile("album_photo", ".jpg", requireContext().cacheDir)
+
+        val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
+
+        imageCapture.takePicture(
+            outputOptions,
+            ContextCompat.getMainExecutor(requireContext()),
+            object : ImageCapture.OnImageSavedCallback {
+                override fun onError(exc: ImageCaptureException) {
+                    Log.e("CameraX", "촬영 실패: ${exc.message}")
+                }
+
+                override fun onImageSaved(output: ImageCapture.OutputFileResults) {
+                    Log.d("CameraX", "사진 저장 성공: ${photoFile.absolutePath}")
+                    val bitmap = BitmapFactory.decodeFile(photoFile.absolutePath)
+                    bitmap?.let { analyzeImageWithGemini(it) }
+                }
+            }
+        )
+    }
 
     private fun openGallery() {
         galleryLauncher.launch("image/*")
     }
 
-//    private fun uploadImageFromUri(uri: Uri) {
-//        val inputStream = requireContext().contentResolver.openInputStream(uri)
-//        val file = File(requireContext().cacheDir, "selected_image.jpg")
-//
-//        inputStream?.use { input ->
-//            FileOutputStream(file).use { output ->
-//                input.copyTo(output)
-//            }
-//        }
-//
-//        uploadImage(file)
-//    }
+    private fun uriToBitmap(uri: Uri): Bitmap? {
+        return try {
+            val inputStream = requireContext().contentResolver.openInputStream(uri)
+            BitmapFactory.decodeStream(inputStream)
+        } catch (e: Exception) {
+            Log.e("CameraFragment", "URI를 Bitmap으로 변환 실패: ${e.message}")
+            null
+        }
+    }
 
-//    private fun uploadImage(file: File) {
-//        val requestFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
-//        val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
-//
-//        val retrofit = Retrofit.Builder()
-//            .baseUrl("https://your.server.url/") // 실제 서버 주소 넣기
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .build()
-//
-//        val service = retrofit.create(YourApiService::class.java)
-//
-//        service.uploadImage(body).enqueue(object : Callback<ResponseBody> {
-//            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-//                if (response.isSuccessful) {
-//                    Toast.makeText(requireContext(), "업로드 성공!", Toast.LENGTH_SHORT).show()
-//                } else {
-//                    Toast.makeText(requireContext(), "업로드 실패", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-//                Toast.makeText(requireContext(), "오류: ${t.message}", Toast.LENGTH_SHORT).show()
-//            }
-//        })
-//    }
+    private fun analyzeImageWithGemini(bitmap: Bitmap) {
+        lifecycleScope.launch(Dispatchers.IO) {
+            val generativeModel = GenerativeModel(
+                modelName = "gemini-1.5-pro",
+                apiKey = BuildConfig.GEMINI_API_KEY
+            )
+
+            try {
+                val response = generativeModel.generateContent(content {
+                    image(bitmap)
+                    text("이 사진의 앨범 제목과 가수명을 알려줘.")
+                })
+
+                val textResponse = response.text
+                withContext(Dispatchers.Main) {
+                    Log.d("Gemini Response", "분석 결과: $textResponse")
+                    val action = CameraFragmentDirections.actionCameraToDonationApply()
+                    findNavController().navigate(action)
+                }
+
+            } catch (e: Exception) {
+                Log.e("Gemini Error", "Gemini API 호출 실패: ${e.message}")
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(requireContext(), "이미지 분석 실패", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
         cameraExecutor.shutdown()
     }
-
 }
