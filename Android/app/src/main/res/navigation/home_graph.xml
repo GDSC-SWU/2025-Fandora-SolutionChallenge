@@ -54,15 +54,37 @@
         <action
             android:id="@+id/action_donation_apply_to_home"
             app:destination="@id/navigation_home" />
+        <argument
+            android:name="albumTitle"
+            app:argType="string"
+            android:defaultValue="" />
+        <argument
+            android:name="artistName"
+            app:argType="string"
+            android:defaultValue="" />
     </fragment>
     <fragment
         android:id="@+id/navigation_camera"
         android:name="com.example.fandora.ui.donation.CameraFragment"
         android:label="CameraFragment"
-        tools:layout="@layout/fragment_camera"/>
+        tools:layout="@layout/fragment_camera">
+        <action
+            android:id="@+id/action_camera_to_donation_apply"
+            app:destination="@id/navigation_donation_apply"
+            app:popUpTo="@id/navigation_donation_apply"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_camera_to_loading"
+            app:destination="@id/navigation_loading" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_map"
         android:name="com.example.fandora.ui.donation.MapFragment"
         android:label="MapFragment"
         tools:layout="@layout/fragment_map"/>
+    <fragment
+        android:id="@+id/navigation_loading"
+        android:name="com.example.fandora.ui.donation.LoadingFragment"
+        android:label="LoadingFragment"
+        tools:layout="@layout/fragment_loading" />
 </navigation>

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.fandora.R
 import com.example.fandora.databinding.FragmentDonationApplyBinding
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -19,6 +20,8 @@ class DonationApplyFragment : Fragment() {
 
     private var _binding: FragmentDonationApplyBinding? = null
     private val binding get() = _binding!!
+
+    private val args: DonationApplyFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,6 +48,16 @@ class DonationApplyFragment : Fragment() {
         }
         setTodayDate()
         setBtnColorChange()
+        setGeminiData()
+    }
+
+    private fun setGeminiData() {
+        val albumTitle = args.albumTitle
+        val artistName = args.artistName
+        if (albumTitle.isNotEmpty() && artistName.isNotEmpty()) {
+            binding.etDonationApplyAlbumName.setText(albumTitle)
+            binding.etDonationApplyArtistName.setText(artistName)
+        }
     }
 
     private fun setTodayDate() {

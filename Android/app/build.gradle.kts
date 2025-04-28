@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("androidx.navigation.safeargs.kotlin")
     id("kotlin-parcelize")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
@@ -15,9 +16,6 @@ android {
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
-
-        buildConfigField("String", "MAPS_API_KEY", "\"${project.properties["mapsapi.key"]}\"")
-        manifestPlaceholders["mapsapi.key"] = project.properties["mapsapi.key"].toString()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -51,6 +49,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.generativeai)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -76,4 +75,19 @@ dependencies {
     implementation (libs.androidx.camera.view)
     implementation(libs.androidx.camera.mlkit.vision)
     implementation (libs.androidx.camera.extensions)
+
+    // OkHttp
+    implementation(libs.okhttp)
+    implementation(platform(libs.okhttp.bom))
+    implementation(libs.okhttp3.okhttp)
+    implementation(libs.logging.interceptor)
+
+    // Gemini API
+    implementation(libs.generativeai)
+
+    // Coroutine
+    implementation(libs.kotlinx.coroutines.android)
+
+    // Gson
+    implementation ("com.google.code.gson:gson:2.13.1")
 }

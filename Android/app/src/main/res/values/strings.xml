@@ -46,4 +46,6 @@
 
     <!--    hint-->
     <string name="hint_text">Text</string>
+    <string name="description_loading_image">Loading Image</string>
+    <string name="label_loading">Searching the album eagerly!</string>
 </resources>
