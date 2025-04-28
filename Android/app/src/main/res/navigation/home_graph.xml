@@ -73,10 +73,18 @@
             app:destination="@id/navigation_donation_apply"
             app:popUpTo="@id/navigation_donation_apply"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_camera_to_loading"
+            app:destination="@id/navigation_loading" />
     </fragment>
     <fragment
         android:id="@+id/navigation_map"
         android:name="com.example.fandora.ui.donation.MapFragment"
         android:label="MapFragment"
         tools:layout="@layout/fragment_map"/>
+    <fragment
+        android:id="@+id/navigation_loading"
+        android:name="com.example.fandora.ui.donation.LoadingFragment"
+        android:label="LoadingFragment"
+        tools:layout="@layout/fragment_loading" />
 </navigation>

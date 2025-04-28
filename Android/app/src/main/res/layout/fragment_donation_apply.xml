@@ -147,7 +147,7 @@
                 android:autofillHints="text"
                 android:background="@drawable/background_white_10_stroke"
                 android:hint="@string/hint_text"
-                android:inputType="text"
+                android:inputType="number"
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="18dp"
                 android:textColorHint="@color/pink_300"

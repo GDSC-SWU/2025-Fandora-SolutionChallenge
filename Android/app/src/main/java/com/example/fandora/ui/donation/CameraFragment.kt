@@ -22,13 +22,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.fandora.BuildConfig
+import com.example.fandora.R
 import com.example.fandora.databinding.FragmentCameraBinding
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.content
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.json.JSONObject
 import java.io.File
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -54,6 +54,7 @@ class CameraFragment : Fragment() {
     private val galleryLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let {
             uriToBitmap(it)?.let { bitmap ->
+                findNavController().navigate(R.id.action_camera_to_loading)
                 analyzeImageWithGemini(bitmap)
             } ?: run {
                 Toast.makeText(requireContext(), "이미지 로드 실패", Toast.LENGTH_SHORT).show()
@@ -145,6 +146,7 @@ class CameraFragment : Fragment() {
 
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
                     Log.d("CameraX", "사진 저장 성공: ${photoFile.absolutePath}")
+                    findNavController().navigate(R.id.action_camera_to_loading)
                     val bitmap = BitmapFactory.decodeFile(photoFile.absolutePath)
                     bitmap?.let { analyzeImageWithGemini(it) }
                 }
@@ -193,6 +195,7 @@ class CameraFragment : Fragment() {
                     val artistName = Regex("\"artist_name\": \"(.*?)\"").find(textResponse)?.groupValues?.get(1) ?: "정보 없음"
 
                     Log.d("Gemini Response", "분석 결과: $textResponse")
+                    findNavController().popBackStack(R.id.navigation_loading, true)
                     val action = CameraFragmentDirections.actionCameraToDonationApply(
                         albumTitle = albumTitle,
                         artistName = artistName
