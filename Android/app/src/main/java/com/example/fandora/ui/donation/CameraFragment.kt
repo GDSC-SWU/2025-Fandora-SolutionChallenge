@@ -28,6 +28,7 @@ import com.google.ai.client.generativeai.type.content
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.json.JSONObject
 import java.io.File
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -168,20 +169,34 @@ class CameraFragment : Fragment() {
     private fun analyzeImageWithGemini(bitmap: Bitmap) {
         lifecycleScope.launch(Dispatchers.IO) {
             val generativeModel = GenerativeModel(
-                modelName = "gemini-1.5-pro",
+                modelName = "gemini-1.5-flash",
                 apiKey = BuildConfig.GEMINI_API_KEY
             )
 
             try {
+                val prompt = """이 앨범 커버 이미지를 분석해서 아래 JSON 포맷으로만 정확하게 답변해줘:
+                    {
+                      "album_title": "앨범 제목",
+                      "artist_name": "가수명"
+                    }
+                    다른 문장은 쓰지 말고 JSON 형식만 출력해줘.""".trimIndent()
+
                 val response = generativeModel.generateContent(content {
                     image(bitmap)
-                    text("이 사진의 앨범 제목과 가수명을 알려줘.")
+                    text(prompt)
                 })
 
-                val textResponse = response.text
+                val textResponse = response.text ?: ""
                 withContext(Dispatchers.Main) {
+
+                    val albumTitle = Regex("\"album_title\": \"(.*?)\"").find(textResponse)?.groupValues?.get(1) ?: "정보 없음"
+                    val artistName = Regex("\"artist_name\": \"(.*?)\"").find(textResponse)?.groupValues?.get(1) ?: "정보 없음"
+
                     Log.d("Gemini Response", "분석 결과: $textResponse")
-                    val action = CameraFragmentDirections.actionCameraToDonationApply()
+                    val action = CameraFragmentDirections.actionCameraToDonationApply(
+                        albumTitle = albumTitle,
+                        artistName = artistName
+                    )
                     findNavController().navigate(action)
                 }
 

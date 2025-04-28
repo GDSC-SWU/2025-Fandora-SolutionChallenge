@@ -87,4 +87,7 @@ dependencies {
 
     // Coroutine
     implementation(libs.kotlinx.coroutines.android)
+
+    // Gson
+    implementation ("com.google.code.gson:gson:2.13.1")
 }

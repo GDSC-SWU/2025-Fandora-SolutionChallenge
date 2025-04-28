@@ -54,6 +54,14 @@
         <action
             android:id="@+id/action_donation_apply_to_home"
             app:destination="@id/navigation_home" />
+        <argument
+            android:name="albumTitle"
+            app:argType="string"
+            android:defaultValue="" />
+        <argument
+            android:name="artistName"
+            app:argType="string"
+            android:defaultValue="" />
     </fragment>
     <fragment
         android:id="@+id/navigation_camera"
