@@ -21,4 +21,4 @@ Ready to move towards the sustainable development of the K-pop with Fandora? ðŸŒ
 |Name|Soyeong Choi|Eunsu Kim|Jimin Lim|Dawon Kim|
 |------|---|---|---|---|
 |Role|PM/Android|AI|Server|UX/UI|
-|Profile|<img width="200" src="https://github.com/user-attachments/assets/9f602917-ac71-4221-b5fb-45d00c3d27ee"/>|<img width="200" src=""/>|<img width="200" src=""/>|<img width="200" src=""/>|
+|Profile|<img width="200" src="https://github.com/user-attachments/assets/9f602917-ac71-4221-b5fb-45d00c3d27ee"/>|<img width="200" src="https://avatars.githubusercontent.com/u/127167993?v=4"/>|<img width="200" src=""/>|<img width="200" src=""/>|
