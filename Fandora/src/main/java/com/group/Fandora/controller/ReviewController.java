@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/companies")
 public class ReviewController {
 
     @Autowired
@@ -22,7 +21,22 @@ public class ReviewController {
     @Autowired
     private CompanyRepository companyRepository;
 
-    @GetMapping("/{companyId}/reviews")
+    @GetMapping("/reviews")
+    public ResponseEntity<List<ReviewResponse>> getAllReviews() {
+        List<Review> reviews = reviewRepository.findAll();
+
+        List<ReviewResponse> response = reviews.stream()
+                .map(review -> new ReviewResponse(
+                        review.getReviewId(),
+                        review.getReviewImage(),
+                        review.getContent()
+                ))
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/companies/{companyId}/reviews")
     public ResponseEntity<List<ReviewResponse>> getReviewsByCompanyId(@PathVariable Long companyId) {
         companyRepository.findById(companyId)
                 .orElseThrow(() -> new IllegalArgumentException("Company not found"));
