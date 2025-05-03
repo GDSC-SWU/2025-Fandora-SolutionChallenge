@@ -2,6 +2,8 @@ package com.group.Fandora.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -11,12 +13,18 @@ public class Donation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long donationId;
 
-    private Long userId;
-    private Long companyId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
+
     private String artistName;
     private String albumName;
     private int quantity;
-    private LocalDateTime donationDate;
+    private LocalDate donationDate;
     private String donationType;
     private String status;
     private LocalDateTime createdAt;

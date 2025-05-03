@@ -62,15 +62,15 @@ public class DonationController {
             String token = authorizationHeader.replace("Bearer ", "");
             Long userId = jwtUtil.validateAndExtractSubject(token);
 
-            List<Donation> donations = donationRepository.findByUserIdAndStatusOrderByDonationDateDesc(userId, status);
+            List<Donation> donations = donationRepository.findByUser_UserIdAndStatusOrderByDonationDateDesc(userId, status);
             List<DonationHistoryResponse> response = donations.stream().map(donation -> {
-                Company company = companyRepository.findById(donation.getCompanyId()).orElseThrow(() -> new IllegalArgumentException("Company not found"));
+                Company company = donation.getCompany();
                 return new DonationHistoryResponse(
                         donation.getDonationId(),
                         company.getCompanyId(),
                         company.getCompanyImage(),
                         company.getCompanyName(),
-                        donation.getDonationDate().toLocalDate().toString()
+                        donation.getDonationDate().toString()
                 );
             }).collect(Collectors.toList());
 

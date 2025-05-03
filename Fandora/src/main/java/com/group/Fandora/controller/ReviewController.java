@@ -41,7 +41,7 @@ public class ReviewController {
         companyRepository.findById(companyId)
                 .orElseThrow(() -> new IllegalArgumentException("Company not found"));
 
-        List<Review> reviews = reviewRepository.findByCompanyId(companyId);
+        List<Review> reviews = reviewRepository.findByCompany_CompanyId(companyId);
 
         List<ReviewResponse> response = reviews.stream()
                 .map(review -> new ReviewResponse(

@@ -1,11 +1,9 @@
 package com.group.Fandora.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -17,4 +15,7 @@ public class User {
     private String name;
     private String email;
     private LocalDateTime createdAt;
+
+    @OneToMany(mappedBy = "user")
+    private List<Donation> donations;
 }

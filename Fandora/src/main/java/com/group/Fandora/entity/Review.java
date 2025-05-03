@@ -1,9 +1,6 @@
 package com.group.Fandora.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
 
@@ -15,7 +12,10 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long reviewId;
 
-    private Long companyId;
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
+
     private String reviewImage;
     private String content;
     private LocalDateTime createdAt;
