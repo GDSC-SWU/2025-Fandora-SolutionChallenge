@@ -88,6 +88,14 @@ dependencies {
     // Coroutine
     implementation(libs.kotlinx.coroutines.android)
 
-    // Gson
-    implementation ("com.google.code.gson:gson:2.13.1")
+    // Retrofit
+    implementation (libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation (libs.gson)
+
+    // Login
+    implementation (libs.play.services.auth)
+
+    // Glide
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 }

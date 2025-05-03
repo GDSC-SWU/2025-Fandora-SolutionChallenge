@@ -1,4 +1,4 @@
-package com.example.fandora.ui.donation
+package com.example.fandora.ui.donationdetail
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

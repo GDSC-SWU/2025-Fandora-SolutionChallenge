@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.fandora.R
-import com.example.fandora.data.model.Review
+import com.example.fandora.data.model.response.TotalReviewResponse
 import com.example.fandora.databinding.ItemHomeFanGiftBinding
+import com.example.fandora.ui.extensions.load
 
-class HomeReviewAdapter : ListAdapter<Review, HomeReviewAdapter.HomeReviewViewHolder>(
+class HomeReviewAdapter : ListAdapter<TotalReviewResponse, HomeReviewAdapter.HomeReviewViewHolder>(
     HomeReviewDiffCallback()
 ) {
 
@@ -23,9 +23,9 @@ class HomeReviewAdapter : ListAdapter<Review, HomeReviewAdapter.HomeReviewViewHo
 
     class HomeReviewViewHolder private constructor(private val binding: ItemHomeFanGiftBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(review: Review) {
-            binding.ivHomeFanGift.setBackgroundResource(R.color.gray_50)
-            binding.tvHomeFanGiftContent.text = review.content
+        fun bind(totalReview: TotalReviewResponse) {
+            binding.ivHomeFanGift.load(totalReview.reviewImage)
+            binding.tvHomeFanGiftContent.text = totalReview.content
         }
 
         companion object {
@@ -42,12 +42,12 @@ class HomeReviewAdapter : ListAdapter<Review, HomeReviewAdapter.HomeReviewViewHo
     }
 }
 
-class HomeReviewDiffCallback: DiffUtil.ItemCallback<Review>() {
-    override fun areItemsTheSame(oldItem: Review, newItem: Review): Boolean {
-        return oldItem.id == newItem.id
+class HomeReviewDiffCallback: DiffUtil.ItemCallback<TotalReviewResponse>() {
+    override fun areItemsTheSame(oldItem: TotalReviewResponse, newItem: TotalReviewResponse): Boolean {
+        return oldItem.reviewId == newItem.reviewId
     }
 
-    override fun areContentsTheSame(oldItem: Review, newItem: Review): Boolean {
+    override fun areContentsTheSame(oldItem: TotalReviewResponse, newItem: TotalReviewResponse): Boolean {
         return oldItem == newItem
     }
 

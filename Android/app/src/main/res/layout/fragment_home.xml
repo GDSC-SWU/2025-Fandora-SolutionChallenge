@@ -76,7 +76,7 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="11dp"
             android:contentDescription="@string/description_home_banner_image"
-            android:src="@color/gray_50"
+            android:src="@drawable/background_banner"
             app:layout_constraintDimensionRatio="372:79"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
