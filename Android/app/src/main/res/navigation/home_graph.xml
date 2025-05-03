@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_donation_detail"
-        android:name="com.example.fandora.ui.donation.DonationDetailFragment"
+        android:name="com.example.fandora.ui.donationdetail.DonationDetailFragment"
         android:label="기업 상세"
         tools:layout="@layout/fragment_donation_detail" >
         <action
@@ -45,7 +45,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_donation_apply"
-        android:name="com.example.fandora.ui.donation.DonationApplyFragment"
+        android:name="com.example.fandora.ui.apply.DonationApplyFragment"
         android:label="기무 신청"
         tools:layout="@layout/fragment_donation_apply" >
         <action
@@ -65,7 +65,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_camera"
-        android:name="com.example.fandora.ui.donation.CameraFragment"
+        android:name="com.example.fandora.ui.apply.CameraFragment"
         android:label="CameraFragment"
         tools:layout="@layout/fragment_camera">
         <action
@@ -84,7 +84,7 @@
         tools:layout="@layout/fragment_map"/>
     <fragment
         android:id="@+id/navigation_loading"
-        android:name="com.example.fandora.ui.donation.LoadingFragment"
+        android:name="com.example.fandora.ui.apply.LoadingFragment"
         android:label="LoadingFragment"
         tools:layout="@layout/fragment_loading" />
 </navigation>

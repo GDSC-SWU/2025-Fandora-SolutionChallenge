@@ -1,4 +1,4 @@
-package com.example.fandora.ui.donation
+package com.example.fandora.ui.apply
 
 import android.Manifest
 import android.content.pm.PackageManager
