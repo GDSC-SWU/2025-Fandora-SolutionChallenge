@@ -38,7 +38,7 @@ class DonationFragment : Fragment() {
 
     private val donationCompanyAdapter = DonationCompanyAdapter(object : CompanyClickListener {
         override fun onCompanyClick(company: Company) {
-            val action = DonationFragmentDirections.actionDonationToDonationDetail(company)
+            val action = DonationFragmentDirections.actionDonationToDonationDetail(company = company, donation = null)
             findNavController().navigate(action)
         }
     })

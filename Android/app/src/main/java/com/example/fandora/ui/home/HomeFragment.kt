@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.example.fandora.R
 import com.example.fandora.data.RetrofitApiPool
-import com.example.fandora.data.source.TotalReviewRepository
+import com.example.fandora.data.source.HomeRepository
 import com.example.fandora.databinding.FragmentHomeBinding
 import com.example.fandora.ui.common.FirstLastMarginDecoration
 import kotlinx.coroutines.launch
@@ -20,7 +22,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: HomeViewModel by viewModels {
-        HomeViewModelFactory(TotalReviewRepository(RetrofitApiPool.retrofitService))
+        HomeViewModelFactory(HomeRepository(RetrofitApiPool.retrofitService))
     }
 
     override fun onCreateView(
@@ -57,9 +59,11 @@ class HomeFragment : Fragment() {
         viewModel.loadTotalReviews("")
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.totalReviews.collect { totalReviews ->
-                adapter.submitList(totalReviews)
-            }
+            viewModel.totalReviews
+                .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
+                .collect { totalReviews ->
+                    adapter.submitList(totalReviews)
+                }
         }
     }
 

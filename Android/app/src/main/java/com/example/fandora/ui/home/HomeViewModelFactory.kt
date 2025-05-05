@@ -2,10 +2,10 @@ package com.example.fandora.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.fandora.data.source.TotalReviewRepository
+import com.example.fandora.data.source.HomeRepository
 
 class HomeViewModelFactory(
-    private val repository: TotalReviewRepository
+    private val repository: HomeRepository
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {

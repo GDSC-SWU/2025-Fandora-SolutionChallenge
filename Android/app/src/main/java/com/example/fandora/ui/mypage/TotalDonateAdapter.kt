@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.fandora.R
-import com.example.fandora.data.model.Company
+import com.example.fandora.data.model.response.DonationResponse
 import com.example.fandora.databinding.ItemDonationTotalBinding
-import com.example.fandora.ui.common.CompanyClickListener
+import com.example.fandora.ui.common.DonationClickListener
+import com.example.fandora.ui.extensions.load
 
-class TotalDonateAdapter(private val clickListener: CompanyClickListener) : ListAdapter<Company, TotalDonateAdapter.TotalDonateViewHolder>(
+class TotalDonateAdapter(private val clickListener: DonationClickListener) : ListAdapter<DonationResponse, TotalDonateAdapter.TotalDonateViewHolder>(
     TotalDonateCallback()
 ) {
 
@@ -24,13 +24,13 @@ class TotalDonateAdapter(private val clickListener: CompanyClickListener) : List
 
     class TotalDonateViewHolder private constructor(private val binding: ItemDonationTotalBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(company: Company, clickListener: CompanyClickListener) {
+        fun bind(donation: DonationResponse, clickListener: DonationClickListener) {
             itemView.setOnClickListener {
-                clickListener.onCompanyClick(company)
+                clickListener.onDonationClick(donation)
             }
-            binding.ivDonationTotal.setBackgroundResource(R.color.gray_50)
-            binding.tvDonationTotalCompanyName.text = company.companyName
-            binding.tvDonationTotalDate.text = company.date
+            binding.ivDonationTotal.load(donation.companyImage)
+            binding.tvDonationTotalCompanyName.text = donation.companyName
+            binding.tvDonationTotalDate.text = donation.donationDate
         }
 
         companion object {
@@ -47,12 +47,12 @@ class TotalDonateAdapter(private val clickListener: CompanyClickListener) : List
     }
 }
 
-class TotalDonateCallback: DiffUtil.ItemCallback<Company>() {
-    override fun areItemsTheSame(oldItem: Company, newItem: Company): Boolean {
-        return oldItem.id == newItem.id
+class TotalDonateCallback: DiffUtil.ItemCallback<DonationResponse>() {
+    override fun areItemsTheSame(oldItem: DonationResponse, newItem: DonationResponse): Boolean {
+        return oldItem.donationId == newItem.donationId
     }
 
-    override fun areContentsTheSame(oldItem: Company, newItem: Company): Boolean {
+    override fun areContentsTheSame(oldItem: DonationResponse, newItem: DonationResponse): Boolean {
         return oldItem == newItem
     }
 
