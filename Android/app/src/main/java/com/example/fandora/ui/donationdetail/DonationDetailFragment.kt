@@ -46,17 +46,23 @@ class DonationDetailFragment : Fragment() {
 
     private fun setLayout() {
         val company = args.company
-        with(binding) {
-            tvDonationDetailCompanyName.text = company.companyName
-            tvDonationDetailCompanyLocation.text = company.location
-            tvDonationDetailCompanyContent.text = company.content
-            btnDonationDetailApply.setOnClickListener {
-                findNavController().navigate(R.id.action_donation_detail_to_donation_apply)
+        val donation = args.donation
+        if (company != null) {
+            with(binding) {
+                tvDonationDetailCompanyName.text = company.companyName
+                tvDonationDetailCompanyLocation.text = company.location
+                tvDonationDetailCompanyContent.text = company.content
+                btnDonationDetailApply.setOnClickListener {
+                    findNavController().navigate(R.id.action_donation_detail_to_donation_apply)
+                }
+                btnDonationDetailBack.setOnClickListener {
+                    findNavController().navigateUp()
+                }
             }
-            btnDonationDetailBack.setOnClickListener {
-                findNavController().navigateUp()
-            }
+        } else {
+
         }
+
         setAdapter()
         setMargin()
     }

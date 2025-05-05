@@ -41,12 +41,17 @@
             app:destination="@id/navigation_donation_apply" />
         <argument
             android:name="company"
-            app:argType="com.example.fandora.data.model.Company" />
+            app:argType="com.example.fandora.data.model.Company"
+            app:nullable="true" />
+        <argument
+            android:name="donation"
+            app:nullable="true"
+            app:argType="com.example.fandora.data.model.response.DonationResponse" />
     </fragment>
     <fragment
         android:id="@+id/navigation_donation_apply"
         android:name="com.example.fandora.ui.apply.DonationApplyFragment"
-        android:label="기무 신청"
+        android:label="기부 신청"
         tools:layout="@layout/fragment_donation_apply" >
         <action
             android:id="@+id/action_donation_apply_to_camera"

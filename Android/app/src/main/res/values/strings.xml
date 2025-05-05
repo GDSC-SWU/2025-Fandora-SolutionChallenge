@@ -10,6 +10,7 @@
     <string name="label_recognize_by_photo">Recognize by photo</string>
     <string name="label_artist_name">Artist\'s name</string>
     <string name="label_album_name">Album name</string>
+    <string name="label_loading">Searching the album eagerly!</string>
     <string name="label_album_count">Number of albums</string>
     <string name="label_donation_date">Donation date</string>
     <string name="label_delivery_method">Delivery Method</string>
@@ -42,10 +43,11 @@
     <string name="description_camera_btn_album">카메라 앨범 버튼</string>
     <string name="description_camera_btn_capture">카메라 촬영 버튼</string>
     <string name="description_map_btn_back">구글 지도 뒤로가기 버튼</string>
+    <string name="description_loading_image">Loading Image</string>
     <string name="description_btn_donation_review">기부 리뷰 상세 버튼</string>
 
     <!--    hint-->
     <string name="hint_text">Text</string>
-    <string name="description_loading_image">Loading Image</string>
-    <string name="label_loading">Searching the album eagerly!</string>
+
+    <string name="mypage_nickname">Dear valued member, %1$s!</string>
 </resources>
