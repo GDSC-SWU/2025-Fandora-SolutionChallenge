@@ -51,7 +51,8 @@ class DonationDetailFragment : Fragment() {
             findNavController().navigateUp()
         }
         binding.btnDonationDetailApply.setOnClickListener {
-            val action = DonationDetailFragmentDirections.actionDonationDetailToDonationApply()
+            val companyId = args.company?.companyId ?: args.donation?.companyId ?: return@setOnClickListener
+            val action = DonationDetailFragmentDirections.actionDonationDetailToDonationApply(companyId = companyId, albumTitle = null, artistName = null)
             findNavController().navigate(action)
         }
         setViewModel()

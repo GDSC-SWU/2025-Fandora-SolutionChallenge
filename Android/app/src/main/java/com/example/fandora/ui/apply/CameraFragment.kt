@@ -21,6 +21,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.fandora.BuildConfig
 import com.example.fandora.R
 import com.example.fandora.databinding.FragmentCameraBinding
@@ -37,6 +38,8 @@ class CameraFragment : Fragment() {
 
     private var _binding: FragmentCameraBinding? = null
     private val binding get() = _binding!!
+
+    private val args: CameraFragmentArgs by navArgs()
 
     private var imageCapture: ImageCapture? = null
     private lateinit var cameraExecutor: ExecutorService
@@ -197,8 +200,9 @@ class CameraFragment : Fragment() {
                     Log.d("Gemini Response", "분석 결과: $textResponse")
                     findNavController().popBackStack(R.id.navigation_loading, true)
                     val action = CameraFragmentDirections.actionCameraToDonationApply(
+                        companyId = args.companyId,
                         albumTitle = albumTitle,
-                        artistName = artistName
+                        artistName = artistName,
                     )
                     findNavController().navigate(action)
                 }
