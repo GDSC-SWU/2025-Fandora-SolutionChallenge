@@ -5,12 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.fandora.R
-import com.example.fandora.data.model.Review
+import com.example.fandora.data.RetrofitApiPool
+import com.example.fandora.data.source.DonationDetailRepository
 import com.example.fandora.databinding.FragmentDonationDetailBinding
 import com.example.fandora.ui.common.FirstLastMarginDecoration
+import com.example.fandora.ui.extensions.load
+import kotlinx.coroutines.launch
 
 class DonationDetailFragment : Fragment() {
 
@@ -18,16 +25,11 @@ class DonationDetailFragment : Fragment() {
     private val binding get() = _binding!!
     private val args: DonationDetailFragmentArgs by navArgs()
 
-    private val donationReviewAdapter = DonationReviewAdapter()
+    private val viewModel: DonationDetailViewModel by viewModels {
+        DonationDetailViewModelFactory(DonationDetailRepository(RetrofitApiPool.retrofitService))
+    }
 
-    val dummyDonationReview = listOf(
-        Review(1, "", "I’m so happy to receive this album! Than"),
-        Review(2, "", "I never thought I’d own this album—thank"),
-        Review(3, "", "This means so much to me! I truly apate"),
-        Review(4, "", "This means so much to me! I truly apate"),
-        Review(5, "", "This means so much to me! I truly apate"),
-        Review(6, "", "This means so much to me! I truly apate")
-    )
+    private val donationReviewAdapter = DonationReviewAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,31 +47,43 @@ class DonationDetailFragment : Fragment() {
     }
 
     private fun setLayout() {
-        val company = args.company
-        val donation = args.donation
-        if (company != null) {
-            with(binding) {
-                tvDonationDetailCompanyName.text = company.companyName
-                tvDonationDetailCompanyLocation.text = company.location
-                tvDonationDetailCompanyContent.text = company.content
-                btnDonationDetailApply.setOnClickListener {
-                    findNavController().navigate(R.id.action_donation_detail_to_donation_apply)
-                }
-                btnDonationDetailBack.setOnClickListener {
-                    findNavController().navigateUp()
-                }
-            }
-        } else {
-
+        binding.btnDonationDetailBack.setOnClickListener {
+            findNavController().navigateUp()
         }
-
-        setAdapter()
+        binding.btnDonationDetailApply.setOnClickListener {
+            val action = DonationDetailFragmentDirections.actionDonationDetailToDonationApply()
+            findNavController().navigate(action)
+        }
+        setViewModel()
         setMargin()
     }
 
-    private fun setAdapter() {
+    private fun setViewModel() {
         binding.rvDonationDetailReview.adapter = donationReviewAdapter
-        donationReviewAdapter.submitList(dummyDonationReview)
+        val companyId = args.company?.companyId ?: args.donation?.companyId
+        companyId?.let {
+            viewModel.loadCompanyDetail("", it)
+            viewModel.loadCompanyReview("", it)
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    viewModel.companyDetail.collect { companyDetail ->
+                        if (companyDetail != null) {
+                            binding.tvDonationDetailCompanyName.text = companyDetail.companyName
+                            binding.tvDonationDetailCompanyContent.text = companyDetail.description
+                            binding.tvDonationDetailCompanyLocation.text = companyDetail.address
+                            binding.ivDonationDetailCompany.load(companyDetail.companyImage)
+                        }
+                    }
+                }
+                launch {
+                    viewModel.companyReview.collect { companyReviews ->
+                        donationReviewAdapter.submitList(companyReviews)
+                    }
+                }
+            }
+        }
     }
 
     private fun setMargin() {

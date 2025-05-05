@@ -50,4 +50,6 @@
     <string name="hint_text">Text</string>
 
     <string name="mypage_nickname">Dear valued member, %1$s!</string>
+    <string name="label_home_fan_joined">This month we joined hands with\n404 fans!</string>
+    <string name="label_home_fan_count">404</string>
 </resources>

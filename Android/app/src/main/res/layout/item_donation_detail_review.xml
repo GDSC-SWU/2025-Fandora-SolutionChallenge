@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_donation_detail_review"
@@ -23,7 +24,7 @@
         android:layout_marginTop="5dp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text="Thanks to this, I waㆍㆍㆍ"
+        tools:text="Thanks to this, I waㆍㆍㆍ"
         app:layout_constraintEnd_toEndOf="@id/iv_donation_detail_review"
         app:layout_constraintStart_toStartOf="@id/iv_donation_detail_review"
         app:layout_constraintTop_toBottomOf="@id/iv_donation_detail_review" />

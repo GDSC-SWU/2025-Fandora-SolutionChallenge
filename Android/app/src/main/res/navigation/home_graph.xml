@@ -41,7 +41,7 @@
             app:destination="@id/navigation_donation_apply" />
         <argument
             android:name="company"
-            app:argType="com.example.fandora.data.model.Company"
+            app:argType="com.example.fandora.data.model.response.CompanyResponse"
             app:nullable="true" />
         <argument
             android:name="donation"

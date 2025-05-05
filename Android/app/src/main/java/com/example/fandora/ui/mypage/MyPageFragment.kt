@@ -15,7 +15,6 @@ import com.example.fandora.data.RetrofitApiPool
 import com.example.fandora.data.model.response.DonationResponse
 import com.example.fandora.data.source.MyPageRepository
 import com.example.fandora.databinding.FragmentMypageBinding
-import com.example.fandora.ui.common.DonationClickListener
 import com.example.fandora.ui.common.FirstLastMarginDecoration
 import kotlinx.coroutines.launch
 

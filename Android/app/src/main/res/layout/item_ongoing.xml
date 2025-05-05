@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_ongoing"
@@ -22,7 +23,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="11dp"
-        android:text="Idol Dream Center"
+        tools:text="Idol Dream Center"
         app:layout_constraintEnd_toEndOf="@id/iv_ongoing"
         app:layout_constraintStart_toStartOf="@id/iv_ongoing"
         app:layout_constraintTop_toBottomOf="@id/iv_ongoing" />
@@ -33,7 +34,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
-        android:text="2025.4.5"
+        tools:text="2025.4.5"
         app:layout_constraintEnd_toEndOf="@id/tv_ongoing_company_name"
         app:layout_constraintStart_toStartOf="@id/tv_ongoing_company_name"
         app:layout_constraintTop_toBottomOf="@id/tv_ongoing_company_name" />

@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fandora.data.model.response.DonationResponse
 import com.example.fandora.databinding.ItemOngoingBinding
-import com.example.fandora.ui.common.DonationClickListener
 import com.example.fandora.ui.extensions.load
 
 class OngoingAdapter(private val clickListener: DonationClickListener) : ListAdapter<DonationResponse, OngoingAdapter.OngoingViewHolder>(
