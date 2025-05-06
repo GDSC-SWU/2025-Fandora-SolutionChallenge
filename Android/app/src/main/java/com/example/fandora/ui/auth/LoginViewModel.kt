@@ -2,9 +2,9 @@ package com.example.fandora.ui.auth
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.fandora.data.AuthTokenProvider
+import com.example.fandora.data.source.network.AuthTokenProvider
 import com.example.fandora.data.model.response.GoogleLoginResponse
-import com.example.fandora.data.source.AuthRepository
+import com.example.fandora.data.source.repository.AuthRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch

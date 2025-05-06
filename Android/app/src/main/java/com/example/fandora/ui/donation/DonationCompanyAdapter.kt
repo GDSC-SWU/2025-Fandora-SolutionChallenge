@@ -5,12 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.fandora.R
-import com.example.fandora.data.model.Company
+import com.example.fandora.data.model.response.CompanyResponse
 import com.example.fandora.databinding.ItemDonationCompanyBinding
-import com.example.fandora.ui.common.CompanyClickListener
+import com.example.fandora.ui.extensions.load
 
-class DonationCompanyAdapter(private val clickListener: CompanyClickListener) : ListAdapter<Company, DonationCompanyAdapter.DonationCompanyViewHolder>(
+class DonationCompanyAdapter(private val clickListener: CompanyClickListener) : ListAdapter<CompanyResponse, DonationCompanyAdapter.DonationCompanyViewHolder>(
     DonationCompanyCallback()
 ) {
 
@@ -24,13 +23,13 @@ class DonationCompanyAdapter(private val clickListener: CompanyClickListener) : 
 
     class DonationCompanyViewHolder private constructor(private val binding: ItemDonationCompanyBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(company: Company, clickListener: CompanyClickListener) {
+        fun bind(company: CompanyResponse, clickListener: CompanyClickListener) {
             itemView.setOnClickListener {
                 clickListener.onCompanyClick(company)
             }
-            binding.ivDonationCompany.setBackgroundResource(R.color.gray_50)
+            binding.ivDonationCompany.load(company.companyImage)
             binding.tvDonationCompanyName.text = company.companyName
-            binding.tvDonationCompanyContent.text = company.content
+            binding.tvDonationCompanyContent.text = company.description
         }
 
         companion object {
@@ -47,12 +46,12 @@ class DonationCompanyAdapter(private val clickListener: CompanyClickListener) : 
     }
 }
 
-class DonationCompanyCallback: DiffUtil.ItemCallback<Company>() {
-    override fun areItemsTheSame(oldItem: Company, newItem: Company): Boolean {
-        return oldItem.id == newItem.id
+class DonationCompanyCallback: DiffUtil.ItemCallback<CompanyResponse>() {
+    override fun areItemsTheSame(oldItem: CompanyResponse, newItem: CompanyResponse): Boolean {
+        return oldItem.companyId == newItem.companyId
     }
 
-    override fun areContentsTheSame(oldItem: Company, newItem: Company): Boolean {
+    override fun areContentsTheSame(oldItem: CompanyResponse, newItem: CompanyResponse): Boolean {
         return oldItem == newItem
     }
 

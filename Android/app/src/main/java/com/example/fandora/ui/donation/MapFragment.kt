@@ -74,6 +74,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         } else {
             Toast.makeText(requireContext(), "위치 권한이 필요합니다.", Toast.LENGTH_SHORT).show()
         }
+
+        loadCompanyMarkers()
     }
 
     @SuppressLint("MissingPermission")
@@ -86,7 +88,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                     addMarker(
                         MarkerOptions()
                             .position(currentLatLng)
-                            .title("현재 위치")
                             .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_marker))
                     )
                 }
@@ -95,6 +96,18 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             }
         }.addOnFailureListener {
             Log.e("MapFragment", "위치 정보를 가져오지 못했습니다: ${it.message}")
+        }
+    }
+
+    private fun loadCompanyMarkers() {
+        val markers = MarkerProvider.getCompanyMarker()
+        markers.forEach {
+            googleMap?.addMarker(
+                MarkerOptions()
+                    .position(it.latLng)
+                    .title(it.title)
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_heart))
+            )
         }
     }
 

@@ -2,9 +2,10 @@ package com.example.fandora.ui.mypage
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.fandora.data.model.response.DonatedCountResponse
 import com.example.fandora.data.model.response.DonationResponse
 import com.example.fandora.data.model.response.UserNameResponse
-import com.example.fandora.data.source.MyPageRepository
+import com.example.fandora.data.source.repository.MyPageRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -17,7 +18,10 @@ class MyPageViewModel(private val repository: MyPageRepository): ViewModel() {
     val ongoing = _ongoing.asStateFlow()
 
     private val _donated = MutableStateFlow<List<DonationResponse>>(emptyList())
-    val donated = _ongoing.asStateFlow()
+    val donated = _donated.asStateFlow()
+
+    private val _donatedCount = MutableStateFlow<DonatedCountResponse?>(null)
+    val donatedCount = _donatedCount.asStateFlow()
 
     fun loadUserName(accessToken: String) {
         viewModelScope.launch {
@@ -34,6 +38,12 @@ class MyPageViewModel(private val repository: MyPageRepository): ViewModel() {
     fun loadDonated(accessToken: String) {
         viewModelScope.launch {
             _donated.value = repository.getDonated(accessToken)
+        }
+    }
+
+    fun loadDonatedCount(accessToken: String) {
+        viewModelScope.launch {
+            _donatedCount.value = repository.getDonatedCount(accessToken)
         }
     }
 }

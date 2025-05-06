@@ -1,7 +1,6 @@
-package com.example.fandora.data
+package com.example.fandora.data.source.network
 
 import com.example.fandora.BuildConfig
-import com.example.fandora.data.source.RetrofitService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

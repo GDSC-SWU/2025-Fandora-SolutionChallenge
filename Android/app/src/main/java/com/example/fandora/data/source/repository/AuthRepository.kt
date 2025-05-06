@@ -1,6 +1,6 @@
-package com.example.fandora.data.source
+package com.example.fandora.data.source.repository
 
-import com.example.fandora.data.RetrofitApiPool
+import com.example.fandora.data.source.network.RetrofitApiPool
 import com.example.fandora.data.model.request.GoogleLoginRequest
 import com.example.fandora.data.model.response.GoogleLoginResponse
 

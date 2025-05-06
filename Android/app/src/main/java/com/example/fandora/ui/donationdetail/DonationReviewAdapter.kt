@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.fandora.R
-import com.example.fandora.data.model.Review
+import com.example.fandora.data.model.response.CompanyReviewResponse
 import com.example.fandora.databinding.ItemDonationDetailReviewBinding
+import com.example.fandora.ui.extensions.load
 
-class DonationReviewAdapter : ListAdapter<Review, DonationReviewAdapter.DonationReviewViewHolder>(
+class DonationReviewAdapter : ListAdapter<CompanyReviewResponse, DonationReviewAdapter.DonationReviewViewHolder>(
     DonationReviewDiffCallback()
 ){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DonationReviewViewHolder {
@@ -22,8 +22,8 @@ class DonationReviewAdapter : ListAdapter<Review, DonationReviewAdapter.Donation
 
     class DonationReviewViewHolder private constructor(private val binding: ItemDonationDetailReviewBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(review: Review) {
-            binding.ivDonationDetailReview.setBackgroundResource(R.color.gray_50)
+        fun bind(review: CompanyReviewResponse) {
+            binding.ivDonationDetailReview.load(review.reviewImage)
             binding.tvDonationDetailReviewContent.text = review.content
         }
 
@@ -41,12 +41,12 @@ class DonationReviewAdapter : ListAdapter<Review, DonationReviewAdapter.Donation
 
     }
 }
-class DonationReviewDiffCallback: DiffUtil.ItemCallback<Review>() {
-    override fun areItemsTheSame(oldItem: Review, newItem: Review): Boolean {
-        return oldItem.id == newItem.id
+class DonationReviewDiffCallback: DiffUtil.ItemCallback<CompanyReviewResponse>() {
+    override fun areItemsTheSame(oldItem: CompanyReviewResponse, newItem: CompanyReviewResponse): Boolean {
+        return oldItem.reviewId == newItem.reviewId
     }
 
-    override fun areContentsTheSame(oldItem: Review, newItem: Review): Boolean {
+    override fun areContentsTheSame(oldItem: CompanyReviewResponse, newItem: CompanyReviewResponse): Boolean {
         return oldItem == newItem
     }
 }

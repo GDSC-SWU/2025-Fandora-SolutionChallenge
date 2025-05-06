@@ -10,8 +10,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.example.fandora.R
-import com.example.fandora.data.RetrofitApiPool
-import com.example.fandora.data.source.HomeRepository
+import com.example.fandora.data.source.network.RetrofitApiPool
+import com.example.fandora.data.source.repository.HomeRepository
 import com.example.fandora.databinding.FragmentHomeBinding
 import com.example.fandora.ui.common.FirstLastMarginDecoration
 import kotlinx.coroutines.launch

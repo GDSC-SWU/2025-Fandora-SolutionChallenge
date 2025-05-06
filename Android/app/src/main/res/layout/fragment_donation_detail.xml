@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="12dp"
-                android:text="MusicSmile Foundation"
+                tools:text="MusicSmile Foundation"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/btn_donation_detail_back" />
@@ -74,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
                 android:layout_marginEnd="20dp"
-                android:text="110-2, Gongneung-dong, Nowon-gu, Seoul"
+                tools:text="110-2, Gongneung-dong, Nowon-gu, Seoul"
                 app:layout_constraintBottom_toBottomOf="@id/iv_donation_detail_location"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/iv_donation_detail_location"
@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="12dp"
-                android:text="A non-profit organization established to support underprivileged youth who have limited access to cultural and artistic experiences. It operates a music listening room using donated idol albums and goods and promotes cultural exchange among global youth through K-POP."
+                tools:text="A non-profit organization established to support underprivileged youth who have limited access to cultural and artistic experiences. It operates a music listening room using donated idol albums and goods and promotes cultural exchange among global youth through K-POP."
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_donation_detail_location" />
