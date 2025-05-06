@@ -12,8 +12,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.fandora.R
-import com.example.fandora.data.RetrofitApiPool
-import com.example.fandora.data.source.DonationDetailRepository
+import com.example.fandora.data.source.network.RetrofitApiPool
+import com.example.fandora.data.source.repository.DonationDetailRepository
 import com.example.fandora.databinding.FragmentDonationDetailBinding
 import com.example.fandora.ui.common.FirstLastMarginDecoration
 import com.example.fandora.ui.extensions.load

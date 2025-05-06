@@ -19,9 +19,9 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.fandora.R
-import com.example.fandora.data.RetrofitApiPool
+import com.example.fandora.data.source.network.RetrofitApiPool
 import com.example.fandora.data.model.response.CompanyResponse
-import com.example.fandora.data.source.DonationRepository
+import com.example.fandora.data.source.repository.DonationRepository
 import com.example.fandora.databinding.FragmentDonationBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -106,6 +106,7 @@ class DonationFragment : Fragment() {
             googleMap = map
             setupMapUi()
             requestLocationPermission()
+            loadCompanyMarkers()
         }
     }
 
@@ -162,6 +163,18 @@ class DonationFragment : Fragment() {
                     )
                 }
             }
+        }
+    }
+
+    private fun loadCompanyMarkers() {
+        val markers = MarkerProvider.getCompanyMarker()
+        markers.forEach {
+            googleMap?.addMarker(
+                MarkerOptions()
+                    .position(it.latLng)
+                    .title(it.title)
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_heart))
+            )
         }
     }
 

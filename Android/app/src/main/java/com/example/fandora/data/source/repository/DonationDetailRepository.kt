@@ -1,7 +1,8 @@
-package com.example.fandora.data.source
+package com.example.fandora.data.source.repository
 
 import com.example.fandora.data.model.response.CompanyDetailResponse
 import com.example.fandora.data.model.response.CompanyReviewResponse
+import com.example.fandora.data.source.network.RetrofitService
 
 class DonationDetailRepository(private val retrofitService: RetrofitService) {
     suspend fun getCompanyDetail(accessToken: String, companyId: Int): CompanyDetailResponse {

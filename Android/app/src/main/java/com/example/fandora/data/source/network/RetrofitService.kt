@@ -1,10 +1,11 @@
-package com.example.fandora.data.source
+package com.example.fandora.data.source.network
 
 import com.example.fandora.data.model.request.DonationApplyRequest
 import com.example.fandora.data.model.request.GoogleLoginRequest
 import com.example.fandora.data.model.response.CompanyDetailResponse
 import com.example.fandora.data.model.response.CompanyResponse
 import com.example.fandora.data.model.response.CompanyReviewResponse
+import com.example.fandora.data.model.response.DonatedCountResponse
 import com.example.fandora.data.model.response.DonationApplyResponse
 import com.example.fandora.data.model.response.GoogleLoginResponse
 import com.example.fandora.data.model.response.DonationResponse
@@ -64,4 +65,9 @@ interface RetrofitService {
         @Header("Authorization") authorization: String,
         @Body donationApplyRequest: DonationApplyRequest
     ): DonationApplyResponse
+
+    @GET("/donations/donated/count")
+    suspend fun getDonatedCount(
+        @Header("Authorization") authorization: String
+    ): DonatedCountResponse
 }

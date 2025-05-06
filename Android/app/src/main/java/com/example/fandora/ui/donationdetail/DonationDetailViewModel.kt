@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.fandora.data.model.response.CompanyDetailResponse
 import com.example.fandora.data.model.response.CompanyReviewResponse
-import com.example.fandora.data.source.DonationDetailRepository
+import com.example.fandora.data.source.repository.DonationDetailRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch

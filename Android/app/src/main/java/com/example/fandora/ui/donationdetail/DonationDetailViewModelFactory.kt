@@ -2,7 +2,7 @@ package com.example.fandora.ui.donationdetail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.fandora.data.source.DonationDetailRepository
+import com.example.fandora.data.source.repository.DonationDetailRepository
 
 class DonationDetailViewModelFactory(
     private val repository: DonationDetailRepository

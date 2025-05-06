@@ -2,7 +2,7 @@ package com.example.fandora.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.fandora.data.source.HomeRepository
+import com.example.fandora.data.source.repository.HomeRepository
 
 class HomeViewModelFactory(
     private val repository: HomeRepository

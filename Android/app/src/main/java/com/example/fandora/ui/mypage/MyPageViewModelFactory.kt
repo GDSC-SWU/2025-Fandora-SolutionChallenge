@@ -2,7 +2,7 @@ package com.example.fandora.ui.mypage
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.fandora.data.source.MyPageRepository
+import com.example.fandora.data.source.repository.MyPageRepository
 
 class MyPageViewModelFactory(
     private val repository: MyPageRepository

@@ -3,7 +3,7 @@ package com.example.fandora.ui.donation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.fandora.data.model.response.CompanyResponse
-import com.example.fandora.data.source.DonationRepository
+import com.example.fandora.data.source.repository.DonationRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch

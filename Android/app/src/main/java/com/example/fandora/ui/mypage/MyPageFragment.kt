@@ -11,9 +11,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.fandora.R
-import com.example.fandora.data.RetrofitApiPool
+import com.example.fandora.data.source.network.RetrofitApiPool
 import com.example.fandora.data.model.response.DonationResponse
-import com.example.fandora.data.source.MyPageRepository
+import com.example.fandora.data.source.repository.MyPageRepository
 import com.example.fandora.databinding.FragmentMypageBinding
 import com.example.fandora.ui.common.FirstLastMarginDecoration
 import kotlinx.coroutines.launch
@@ -61,6 +61,7 @@ class MyPageFragment : Fragment() {
         viewModel.loadUserName("")
         viewModel.loadOngoing("")
         viewModel.loadDonated("")
+        viewModel.loadDonatedCount("")
 
         binding.rvMypageOngoing.adapter = onGoingAdapter
         binding.rvMypageDonateTotal.adapter = totalDonateAdapter
@@ -83,6 +84,14 @@ class MyPageFragment : Fragment() {
                 launch {
                     viewModel.donated.collect { donated ->
                         totalDonateAdapter.submitList(donated)
+                    }
+                }
+                launch {
+                    viewModel.donatedCount.collect { donatedCount ->
+                        donatedCount?.let {
+                            binding.tvMypageDonateTotal.text =
+                                getString(R.string.mypage_donated_count, it.count.toString())
+                        }
                     }
                 }
             }

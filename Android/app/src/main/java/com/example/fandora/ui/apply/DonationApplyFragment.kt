@@ -15,9 +15,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.fandora.R
-import com.example.fandora.data.RetrofitApiPool
+import com.example.fandora.data.source.network.RetrofitApiPool
 import com.example.fandora.data.model.request.DonationApplyRequest
-import com.example.fandora.data.source.DonationApplyRepository
+import com.example.fandora.data.source.repository.DonationApplyRepository
 import com.example.fandora.databinding.FragmentDonationApplyBinding
 import com.google.android.material.datepicker.MaterialDatePicker
 import kotlinx.coroutines.launch
