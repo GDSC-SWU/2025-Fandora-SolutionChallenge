@@ -1,5 +1,6 @@
 package com.group.Fandora.controller;
 
+import com.group.Fandora.dto.DonationCountResponse;
 import com.group.Fandora.dto.DonationHistoryResponse;
 import com.group.Fandora.dto.DonationRequest;
 import com.group.Fandora.dto.DonationResponse;
@@ -55,6 +56,19 @@ public class DonationController {
     @GetMapping("/donated")
     public ResponseEntity<List<DonationHistoryResponse>> getDonatedDonations(@RequestHeader("Authorization") String authorizationHeader) {
         return getDonationsByStatus(authorizationHeader, "Donated");
+    }
+
+    @GetMapping("/donated/count")
+    public ResponseEntity<DonationCountResponse> getDonatedCount(@RequestHeader("Authorization") String authorizationHeader) {
+        try {
+            String token = authorizationHeader.replace("Bearer ", "");
+            Long userId = jwtUtil.validateAndExtractSubject(token);
+
+            int count = donationService.getDonatedCountByUserId(userId);
+            return ResponseEntity.ok(new DonationCountResponse(count));
+        } catch (Exception e) {
+            return ResponseEntity.status(400).body(null);
+        }
     }
 
     private ResponseEntity<List<DonationHistoryResponse>> getDonationsByStatus(String authorizationHeader, String status) {

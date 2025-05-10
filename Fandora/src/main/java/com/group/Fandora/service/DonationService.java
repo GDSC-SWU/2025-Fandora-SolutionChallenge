@@ -45,4 +45,8 @@ public class DonationService {
 
         return donationRepository.save(donation);
     }
+
+    public int getDonatedCountByUserId(Long userId) {
+        return donationRepository.countByUser_UserIdAndStatus(userId, "Donated");
+    }
 }
