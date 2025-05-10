@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_donation_detail"
-        android:name="com.example.fandora.ui.donation.DonationDetailFragment"
+        android:name="com.example.fandora.ui.donationdetail.DonationDetailFragment"
         android:label="기업 상세"
         tools:layout="@layout/fragment_donation_detail" >
         <action
@@ -41,12 +41,17 @@
             app:destination="@id/navigation_donation_apply" />
         <argument
             android:name="company"
-            app:argType="com.example.fandora.data.model.Company" />
+            app:argType="com.example.fandora.data.model.response.CompanyResponse"
+            app:nullable="true" />
+        <argument
+            android:name="donation"
+            app:nullable="true"
+            app:argType="com.example.fandora.data.model.response.DonationResponse" />
     </fragment>
     <fragment
         android:id="@+id/navigation_donation_apply"
-        android:name="com.example.fandora.ui.donation.DonationApplyFragment"
-        android:label="기무 신청"
+        android:name="com.example.fandora.ui.apply.DonationApplyFragment"
+        android:label="기부 신청"
         tools:layout="@layout/fragment_donation_apply" >
         <action
             android:id="@+id/action_donation_apply_to_camera"
@@ -55,17 +60,22 @@
             android:id="@+id/action_donation_apply_to_home"
             app:destination="@id/navigation_home" />
         <argument
+            android:name="companyId"
+            app:argType="integer" />
+        <argument
             android:name="albumTitle"
             app:argType="string"
-            android:defaultValue="" />
+            android:defaultValue=""
+            app:nullable="true" />
         <argument
             android:name="artistName"
             app:argType="string"
-            android:defaultValue="" />
+            android:defaultValue=""
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/navigation_camera"
-        android:name="com.example.fandora.ui.donation.CameraFragment"
+        android:name="com.example.fandora.ui.apply.CameraFragment"
         android:label="CameraFragment"
         tools:layout="@layout/fragment_camera">
         <action
@@ -76,6 +86,9 @@
         <action
             android:id="@+id/action_camera_to_loading"
             app:destination="@id/navigation_loading" />
+        <argument
+            android:name="companyId"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/navigation_map"
@@ -84,7 +97,7 @@
         tools:layout="@layout/fragment_map"/>
     <fragment
         android:id="@+id/navigation_loading"
-        android:name="com.example.fandora.ui.donation.LoadingFragment"
+        android:name="com.example.fandora.ui.apply.LoadingFragment"
         android:label="LoadingFragment"
         tools:layout="@layout/fragment_loading" />
 </navigation>

@@ -13,11 +13,16 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.fandora.R
-import com.example.fandora.data.model.Company
+import com.example.fandora.data.source.network.RetrofitApiPool
+import com.example.fandora.data.model.response.CompanyResponse
+import com.example.fandora.data.source.repository.DonationRepository
 import com.example.fandora.databinding.FragmentDonationBinding
-import com.example.fandora.ui.common.CompanyClickListener
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -26,6 +31,7 @@ import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import kotlinx.coroutines.launch
 
 class DonationFragment : Fragment() {
 
@@ -36,9 +42,13 @@ class DonationFragment : Fragment() {
     private var googleMap: GoogleMap? = null
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
+    private val viewModel: DonationViewModel by viewModels {
+        DonationViewModelFactory(DonationRepository(RetrofitApiPool.retrofitService))
+    }
+
     private val donationCompanyAdapter = DonationCompanyAdapter(object : CompanyClickListener {
-        override fun onCompanyClick(company: Company) {
-            val action = DonationFragmentDirections.actionDonationToDonationDetail(company)
+        override fun onCompanyClick(company: CompanyResponse) {
+            val action = DonationFragmentDirections.actionDonationToDonationDetail(company = company, donation = null)
             findNavController().navigate(action)
         }
     })
@@ -52,15 +62,6 @@ class DonationFragment : Fragment() {
             Toast.makeText(requireContext(), "위치 권한이 필요합니다.", Toast.LENGTH_SHORT).show()
         }
     }
-
-    val dummyCompany = listOf(
-        Company(1, "MusicSmile Foundation", "", "", "A non-profit organization established to support underprivileged youth who ha ㆍㆍㆍ ", "2024.12.28"),
-        Company(2, "Idol Dream Center", "", "", "A welfare facility for children and adolescents with developmental disabilities who lovㆍㆍㆍ ", "2024.10.1"),
-        Company(3, "MusicBridge", "", "", "A social enterprise that supports underprivileged communities through ㆍㆍㆍ", "2024.7.20"),
-        Company(4, "SoulHarmony", "", "", "A nonprofit organization that provides psychological and emotional support fo ㆍㆍㆍ", "2024.10.2"),
-        Company(5, "Green Eco Store", "", "", "Green Eco Store is a social enterprise recycling store that promotes eco-friendly culture. They collect K-POP albums, merchandise, and books, then resell them or donate them to local children's centers and underprivileged youth. All proceeds support environmental protection activities.", "2024.5.5"),
-        Company(6, "Grow Care Center", "", "", "Grow Care Center is a social welfare facility dedicated to supporting children and youth in need. They provide various programs to help children and adolescents grow up healthy and independent. Donated K-POP albums are gifted to the children or made available in community spaces.", "2025.4.10"),
-    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -84,7 +85,15 @@ class DonationFragment : Fragment() {
 
     private fun setAdapter() {
         binding.rvDonationCompany.adapter = donationCompanyAdapter
-        donationCompanyAdapter.submitList(dummyCompany)
+        viewModel.loadCompanies("")
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.companies
+                .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
+                .collect { companies ->
+                    donationCompanyAdapter.submitList(companies)
+                }
+        }
     }
 
     private fun setGoogleMap(savedInstanceState: Bundle?) {
@@ -97,6 +106,7 @@ class DonationFragment : Fragment() {
             googleMap = map
             setupMapUi()
             requestLocationPermission()
+            loadCompanyMarkers()
         }
     }
 
@@ -153,6 +163,18 @@ class DonationFragment : Fragment() {
                     )
                 }
             }
+        }
+    }
+
+    private fun loadCompanyMarkers() {
+        val markers = MarkerProvider.getCompanyMarker()
+        markers.forEach {
+            googleMap?.addMarker(
+                MarkerOptions()
+                    .position(it.latLng)
+                    .title(it.title)
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_heart))
+            )
         }
     }
 

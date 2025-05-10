@@ -1,4 +1,4 @@
-package com.example.fandora.ui.donation
+package com.example.fandora.ui.apply
 
 import android.os.Bundle
 import android.text.Editable
@@ -6,12 +6,21 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.fandora.R
+import com.example.fandora.data.source.network.RetrofitApiPool
+import com.example.fandora.data.model.request.DonationApplyRequest
+import com.example.fandora.data.source.repository.DonationApplyRepository
 import com.example.fandora.databinding.FragmentDonationApplyBinding
 import com.google.android.material.datepicker.MaterialDatePicker
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -22,6 +31,10 @@ class DonationApplyFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val args: DonationApplyFragmentArgs by navArgs()
+
+    private val viewModel: ApplyViewModel by viewModels {
+        ApplyViewModelFactory(DonationApplyRepository(RetrofitApiPool.retrofitService))
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,24 +57,25 @@ class DonationApplyFragment : Fragment() {
             findNavController().navigateUp()
         }
         binding.btnDonationApplyCamera.setOnClickListener {
-            findNavController().navigate(R.id.action_donation_apply_to_camera)
+            val action = DonationApplyFragmentDirections.actionDonationApplyToCamera(args.companyId)
+            findNavController().navigate(action)
         }
         setTodayDate()
         setBtnColorChange()
         setGeminiData()
+
     }
 
     private fun setGeminiData() {
-        val albumTitle = args.albumTitle
-        val artistName = args.artistName
-        if (albumTitle.isNotEmpty() && artistName.isNotEmpty()) {
-            binding.etDonationApplyAlbumName.setText(albumTitle)
-            binding.etDonationApplyArtistName.setText(artistName)
-        }
+        val albumTitle = args.albumTitle ?: ""
+        val artistName = args.artistName ?: ""
+
+        binding.etDonationApplyAlbumName.setText(albumTitle)
+        binding.etDonationApplyArtistName.setText(artistName)
     }
 
     private fun setTodayDate() {
-        val currentDate = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault()).format(Date())
+        val currentDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
         binding.etDonationApplyDate.setText(currentDate)
     }
 
@@ -84,7 +98,7 @@ class DonationApplyFragment : Fragment() {
         datePicker.show(parentFragmentManager, "DATE_PICKER")
 
         datePicker.addOnPositiveButtonClickListener { selection ->
-            val sdf = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
+            val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
             val selectedDate = sdf.format(Date(selection))
             binding.etDonationApplyDate.setText(selectedDate)
         }
@@ -103,11 +117,13 @@ class DonationApplyFragment : Fragment() {
                 else R.drawable.background_gray200_10
             )
             setOnClickListener {
-                if (isEnabled) findNavController().navigate(R.id.action_donation_apply_to_home)
+                if (isEnabled) {
+                    findNavController().navigate(R.id.action_donation_apply_to_home)
+                    setViewModel()
+                }
             }
         }
     }
-
 
     private fun setBtnColorChange() {
         val watcher = object : TextWatcher {
@@ -120,6 +136,33 @@ class DonationApplyFragment : Fragment() {
         binding.etDonationApplyAlbumCount.addTextChangedListener(watcher)
         binding.radioGroupDonationApply.setOnCheckedChangeListener { _, _ ->
             checkFormAndUpdateButton()
+        }
+    }
+
+    private fun setViewModel() {
+        val donationApplyRequest = DonationApplyRequest(
+            companyId = args.companyId,
+            artistName = binding.etDonationApplyArtistName.text.toString(),
+            albumName = binding.etDonationApplyAlbumName.text.toString(),
+            quantity = binding.etDonationApplyAlbumCount.text.toString().toInt(),
+            donationDate = binding.etDonationApplyDate.text.toString(),
+            donationType =
+            if (binding.btnDonationApplyDelivery.isSelected) {
+                "delivery"
+            } else {
+                "In-person"
+            }
+        )
+
+        viewModel.apply("", donationApplyRequest)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.applyResponse
+                .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
+                .collect { applyResponse ->
+                    if (applyResponse != null) {
+                        Toast.makeText(requireContext(), applyResponse.message, Toast.LENGTH_SHORT).show()
+                    }
+                }
         }
     }
 
