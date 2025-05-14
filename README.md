@@ -40,13 +40,15 @@ Connect markets: Build platforms that streamline commerce, empower small busines
 
 <br><br>
 ## **📹** Demo Video Link
-
-비디오 링크 삽입
+[![Video Label](https://github.com/user-attachments/assets/db1628d4-6fa8-424b-80dd-efc1ef728077)](https://www.youtube.com/watch?v=R-lBbdDYSG8)
 
 <br><br>
 ## **❓** Design (How to use)
+![image (9)](https://github.com/user-attachments/assets/b48da7ec-f483-4111-9b77-59bd830192f3)
+![image (10)](https://github.com/user-attachments/assets/d2185039-35ae-4dda-b1b8-5ff3f80209a0)
+![image (11)](https://github.com/user-attachments/assets/1a86a512-c11d-4229-929d-c4c480553d75)
+![image (12)](https://github.com/user-attachments/assets/248a6534-ef4a-49e3-a0fd-526fa13a6d9e)
 
-앱 사용 방법 이미지 삽입
 
 
 <br><br>
@@ -59,10 +61,10 @@ Connect markets: Build platforms that streamline commerce, empower small busines
 **2. Install APK and Run the app**
 
 
-<br><br><br>
+<br><br>
 ## 👩🏻‍💻 Contributors
 
 |Name|Soyeong Choi|Eunsu Kim|Jimin Lim|Dawon Kim|
 |------|---|---|---|---|
 |Role|PM/Android|AI|Server|UX/UI|
-|Profile|<img width="200" src="https://github.com/user-attachments/assets/9f602917-ac71-4221-b5fb-45d00c3d27ee"/>|<img width="200" src="https://avatars.githubusercontent.com/u/127167993?v=4"/>|<img width="200" src=""/>|<img width="200" src="https://github.com/user-attachments/assets/10f13f5a-eaf4-4e03-8ece-7e85259541c2"/>|
+|Profile|<img width="200" src="https://github.com/user-attachments/assets/9f602917-ac71-4221-b5fb-45d00c3d27ee"/>|<img width="200" src="https://avatars.githubusercontent.com/u/127167993?v=4"/>|<img width="200" src="https://github.com/user-attachments/assets/a6715840-1bdf-46aa-8f74-d83a7633058a"/>|<img width="200" src="https://github.com/user-attachments/assets/10f13f5a-eaf4-4e03-8ece-7e85259541c2"/>|
